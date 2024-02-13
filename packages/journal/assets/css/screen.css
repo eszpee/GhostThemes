@@ -7,6 +7,7 @@
     --color-primary-text: var(--color-black);
     --color-darker-gray: var(--color-black);
     --head-nav-gap: 3.2rem;
+    background-color: red;
 }
 
 .tag-template .gh-main,
