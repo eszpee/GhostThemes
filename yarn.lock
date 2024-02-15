@@ -3722,10 +3722,6 @@ jackspeak@^2.3.5:
   optionalDependencies:
     "@pkgjs/parseargs" "^0.11.0"
 
-"journal@file:/Users/eszpee/projects/ghost-themes/GhostThemes/packages/journal":
-  version "1.0.0"
-  resolved "file:packages/journal"
-
 js-beautify@^1.13.11:
   version "1.14.11"
   resolved "https://registry.npmjs.org/js-beautify/-/js-beautify-1.14.11.tgz"
@@ -4575,6 +4571,10 @@ performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/performance-now/-/performance-now-2.1.0.tgz"
   integrity sha512-7EAHlyLHI56VEIdK57uwHdHKIaAGbnXPiw0yWbarQZOKaKpvUIgW0jWRVLiatnM+XXlSwsanIBH/hzGMJulMow==
+
+"peter-journal@file:/Users/eszpee/projects/ghost-themes/GhostThemes/packages/journal":
+  version "1.0.0"
+  resolved "file:packages/journal"
 
 picocolors@^1.0.0:
   version "1.0.0"
