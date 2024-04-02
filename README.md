@@ -1,3 +1,9 @@
+# Ghost Themes forked repository
+
+This is my personal repository containing the modified versions of the official Ghost theme Journal for https://peterszasz.com. 
+
+---
+
 # Ghost Themes
 
 A monorepo for [Ghost](https://github.com/TryGhost/Ghost) official themes. 
