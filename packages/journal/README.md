@@ -1,3 +1,9 @@
+# Personal fork of the official Ghost theme Journal
+
+This is my personal repository containing the modified versions of the official Ghost theme Journal for https://peterszasz.com. 
+
+-----
+
 # Journal
 
 A minimal, typography-heavy newsletter theme for [Ghost](https://github.com/TryGhost/Ghost).
