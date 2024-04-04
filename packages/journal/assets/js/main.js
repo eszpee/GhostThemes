@@ -29,10 +29,10 @@ const setColorMode = (mode) => {
     setColorMode(e.target.checked ? 'dark' : 'light');
   });
   
-  document.querySelector('#reset-darkmode').addEventListener('click', (e) => {
-    e.preventDefault();
-    setColorMode(false);
-  });
+  // document.querySelector('#reset-darkmode').addEventListener('click', (e) => {
+  //   e.preventDefault();
+  //   setColorMode(false);
+  // });
   
   // Keep an eye out for System Light/Dark Mode Changes
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
