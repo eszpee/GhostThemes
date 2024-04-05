@@ -35,7 +35,7 @@
 
                 <div class="gh-feed">
                     {{^is "paged"}}
-                        {{#foreach posts from="2"}}
+                        {{#foreach posts from="2" limit="15"}}
                             {{#has tag="newsletter"}}
                                 {{!-- show nothing nothing --}}
                             {{else}}
