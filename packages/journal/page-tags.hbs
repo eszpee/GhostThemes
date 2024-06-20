@@ -1,0 +1,25 @@
+{{!< default}}
+
+<main id="gh-main" class="gh-main">
+  <article class="gh-article {{post_class}}">
+    <header class="gh-article-header gh-canvas">
+        <h1 class="gh-article-title">Topics</h1>
+    </header>
+    <div class="gh-content gh-canvas">
+                {{#get "tags" include="count.posts" limit="all" as |topic|}}
+                    <section class="gh-section">
+                        <div class="gh-topic">
+                            {{#foreach topic}}
+                                <a class="gh-topic-item" href="{{url}}">
+                                    <h4 class="gh-topic-name">{{name}}</h4>
+                                    <span class="gh-topic-count" style="white-space: nowrap;">
+                                        {{plural count.posts empty="0 posts" singular="% post" plural="% posts"}}
+                                    </span>
+                                </a>
+                            {{/foreach}}
+                        </div>
+                    </section>
+                {{/get}}
+        </div>
+  </article>
+</main>

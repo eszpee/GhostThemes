@@ -731,3 +731,10 @@
 
 /* Dark mode END */
 
+/* Extension for topics page */
+
+a.gh-topic-item {
+    text-decoration: none;
+}
+
+/* Topics page over */
