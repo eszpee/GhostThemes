@@ -3,7 +3,8 @@
 <main id="gh-main" class="gh-main gh-outer">
     <div class="gh-inner">
         {{^is "paged"}}
-            {{#foreach posts limit="1"}}
+            {{#get "posts" limit="1" filter="tag:-newsletter"}}
+            {{#foreach posts}}
                 <article class="gh-latest gh-card {{post_class}}">
                     <a class="gh-card-link" href="{{url}}">
                         <header class="gh-card-header">
@@ -27,6 +28,7 @@
                     </a>
                 </article>
             {{/foreach}}
+            {{/get}}
         {{/is}}
 
         <div class="gh-wrapper">
@@ -39,7 +41,11 @@
                             {{#has tag="newsletter"}}
                                 {{!-- show nothing nothing --}}
                             {{else}}
-                                {{> "loop"}}
+                                {{#if @first}}
+                                {{!-- Skip this first non-newsletter post --}}
+                                {{else}}
+                                    {{> "loop"}}
+                                {{/if}}
                             {{/has}}
                         {{/foreach}}
                     {{else}}
@@ -47,7 +53,11 @@
                             {{#has tag="newsletter"}}
                                 {{!-- show nothing nothing --}}
                             {{else}}
-                                {{> "loop"}}
+                                {{#if @first}}
+                                {{!-- Skip this first non-newsletter post --}}
+                                {{else}}
+                                    {{> "loop"}}
+                                {{/if}}
                             {{/has}}
                         {{/foreach}}
                     {{/is}}
