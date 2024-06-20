@@ -133,9 +133,9 @@
                     {{/if}}
                 {{/get}}
 
-                {{#get "tags" include="count.posts" limit="all" as |topic|}}
+                {{#get "tags" include="count.posts" limit="20" order="count.posts desc" filter="slug:-newsletter" as |topic|}}
                     <section class="gh-section">
-                        <h3 class="gh-section-title">Topics</h3>
+                        <h3 class="gh-section-title">Main Topics</h3>
 
                         <div class="gh-topic">
                             {{#foreach topic}}
@@ -146,6 +146,8 @@
                                     </span>
                                 </a>
                             {{/foreach}}
+                            <a class="topics-all" href="/tag/">See all {{> "icons/arrow-right"}}</a>
+
                         </div>
                     </section>
                 {{/get}}

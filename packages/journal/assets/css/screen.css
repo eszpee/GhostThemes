@@ -731,10 +731,31 @@
 
 /* Dark mode END */
 
-/* Extension for topics page */
+/* Extension for topics */
 
 a.gh-topic-item {
     text-decoration: none;
 }
 
-/* Topics page over */
+a.topics-all {
+    display: inline-flex;
+    gap: 2px;
+    align-items: center;
+    padding: 0;
+    margin-top: 24px;
+    font-size: 1.2rem;
+    font-weight: 550;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+}
+
+a.topics-all svg {
+    width: 12px;
+    margin-top: -1px;
+}
+
+/* Topics over */
+
