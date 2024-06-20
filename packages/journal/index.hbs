@@ -117,10 +117,10 @@
                     {{/if}}
                 {{/get}}
 
-                {{#get "posts" filter="primary_tag:newsletter" limit="all" as |newsletter|}}
+                {{#get "posts" filter="primary_tag:newsletter" limit="10" as |newsletter|}}
                     {{#if newsletter}}
                         <section class="gh-section">
-                            <h3 class="gh-section-title">Newsletter issues</h3>
+                            <h3 class="gh-section-title">Latest Friday Updates</h3>
 
                             <div class="gh-featured gh-feed">
                                 {{#foreach newsletter}}
@@ -128,6 +128,8 @@
                                         <h3 class="gh-topic-name">{{title}}</h3>
                                     </a>
                                 {{/foreach}}
+                                <a class="topics-all" href="/tag/newsletter/">See all {{> "icons/arrow-right"}}</a>
+
                             </div>
                         </section>
                     {{/if}}
