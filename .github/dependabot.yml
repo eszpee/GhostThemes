@@ -1,0 +1,7 @@
+version: 2
+updates:
+  - package-ecosystem: "npm" # or "pip", "maven", etc.
+    directory: "/" # location of the package files
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 5
