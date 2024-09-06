@@ -37,7 +37,7 @@
 
                 <div class="gh-feed">
                     {{^is "paged"}}
-                        {{#foreach posts from="2" limit="15"}}
+                        {{#foreach posts from="2" limit="20"}}
                             {{#has tag="newsletter"}}
                                 {{!-- show nothing nothing --}}
                             {{else}}
@@ -49,15 +49,11 @@
                             {{/has}}
                         {{/foreach}}
                     {{else}}
-                        {{#foreach posts limit="15"}}
+                        {{#foreach posts limit="20"}}
                             {{#has tag="newsletter"}}
                                 {{!-- show nothing nothing --}}
                             {{else}}
-                                {{#if @first}}
-                                {{!-- Skip this first non-newsletter post --}}
-                                {{else}}
-                                    {{> "loop"}}
-                                {{/if}}
+                                {{> "loop"}}
                             {{/has}}
                         {{/foreach}}
                     {{/is}}
