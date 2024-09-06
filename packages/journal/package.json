@@ -1,7 +1,7 @@
 {
     "name": "peter-journal",
     "description": "A Ghost theme adapted by Peter Szasz",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "private": true,
     "engines": {
         "ghost": ">=5.0.0"
