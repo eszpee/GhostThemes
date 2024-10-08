@@ -69,7 +69,7 @@
         "@tryghost/shared-theme-assets": "2.4.5",
         "autoprefixer": "10.4.20",
         "beeper": "3.0.0",
-        "cssnano": "7.0.5",
+        "cssnano": "7.0.6",
         "gscan": "4.43.2",
         "gulp": "5.0.0",
         "gulp-concat": "2.6.1",
@@ -80,6 +80,6 @@
         "ordered-read-streams": "2.0.0",
         "postcss": "8.4.41",
         "postcss-easy-import": "4.0.0",
-        "pump": "3.0.0"
+        "pump": "3.0.2"
     }
 }
