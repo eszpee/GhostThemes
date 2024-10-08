@@ -1557,10 +1557,10 @@
     json-stringify-safe "^5.0.1"
     lodash "^4.17.21"
 
-"@tryghost/mongo-knex@^0.9.0":
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/@tryghost/mongo-knex/-/mongo-knex-0.9.0.tgz#34463ceaa23b8e5e4c7ff859d9d5cc8f300ceade"
-  integrity sha512-1dksBf+nVyfVRssFC3/Tn1KqMhKfLhsjCnxnLv8vW5ZxSw39U6Kyp97u4BWithx31M/g3Q8nfCVg8hIgYVyt7w==
+"@tryghost/mongo-knex@^0.9.1":
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/@tryghost/mongo-knex/-/mongo-knex-0.9.1.tgz#b429952cc01d7ffa2489b37db4008f8a323e40d5"
+  integrity sha512-WqnuGs9TUMxc9/lSyuJ7kB57jDIFSd+Dty5rgjKf6Ts6u5k73FRvOqJL83U0aPCb67r1GC1SKgf40ErISFHHvA==
   dependencies:
     debug "^4.3.3"
     lodash "^4.17.21"
@@ -1579,12 +1579,12 @@
   dependencies:
     date-fns "^2.28.0"
 
-"@tryghost/nql@^0.12.0":
-  version "0.12.3"
-  resolved "https://registry.yarnpkg.com/@tryghost/nql/-/nql-0.12.3.tgz#260f0aed0c3bee85b046fcd8ee24dd567b5ed451"
-  integrity sha512-bG0U+RMLixLTFkLM4DaL9uDhPCoTlxyMzZOIibZnBHmxi1lMM5cgUEGV38IwD92laIfS2t5BvAONKGhsGoVVVg==
+"@tryghost/nql@^0.12.5":
+  version "0.12.5"
+  resolved "https://registry.yarnpkg.com/@tryghost/nql/-/nql-0.12.5.tgz#dc4531e26af06fd40c3b182295a480923cc44591"
+  integrity sha512-vc7IBsmYLb7zszLTFxGcDobkUKQ3cBKTEq3P71OGt7ranVI3KD1Du5Pq90eowQflT61DTy5eU7U9mltXOGvEkw==
   dependencies:
-    "@tryghost/mongo-knex" "^0.9.0"
+    "@tryghost/mongo-knex" "^0.9.1"
     "@tryghost/mongo-utils" "^0.6.2"
     "@tryghost/nql-lang" "^0.6.1"
     mingo "^2.2.2"
@@ -4053,17 +4053,17 @@ graceful-fs@4.2.11, graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.11.tgz#4183e4e8bf08bb6e05bbb2f7d2e0c8f712ca40e3"
   integrity sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==
 
-gscan@4.43.2:
-  version "4.43.2"
-  resolved "https://registry.yarnpkg.com/gscan/-/gscan-4.43.2.tgz#72601fe61e763b9dac605a4804b6ebab27e199a6"
-  integrity sha512-raMKNb8gmMThjEZfffsTbLd/eWx86rM17SuFxvyPEpp949GXYdh1oaBYgTS3yWQ7Ydw6ZabwZPuctU0zirMZxg==
+gscan@4.43.6:
+  version "4.43.6"
+  resolved "https://registry.yarnpkg.com/gscan/-/gscan-4.43.6.tgz#2c5749fdfbd7d250d76d67d6101ede26f974b742"
+  integrity sha512-JUpzQyV1Rl8mOYR+egFcRiHOpoTihn45ZlH3Z2D4z2tMqorG9OEnb1kf+VS+YKKpC9GY9PhJbG6tRrkthLbhEA==
   dependencies:
     "@sentry/node" "^7.73.0"
     "@tryghost/config" "^0.2.18"
     "@tryghost/debug" "^0.1.26"
     "@tryghost/errors" "^1.2.26"
     "@tryghost/logging" "^2.4.7"
-    "@tryghost/nql" "^0.12.0"
+    "@tryghost/nql" "^0.12.5"
     "@tryghost/pretty-cli" "^1.2.38"
     "@tryghost/server" "^0.1.37"
     "@tryghost/zip" "^1.1.42"
