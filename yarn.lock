@@ -2688,15 +2688,17 @@ concat-with-sourcemaps@^1.0.0:
   dependencies:
     source-map "^0.6.1"
 
-concurrently@9.0.1:
-  version "9.0.1"
-  resolved "https://registry.yarnpkg.com/concurrently/-/concurrently-9.0.1.tgz#01e171bf6c7af0c022eb85daef95bff04d8185aa"
-  integrity sha512-wYKvCd/f54sTXJMSfV6Ln/B8UrfLBKOYa+lzc6CHay3Qek+LorVSBdMVfyewFhRbH0Rbabsk4D+3PL/VjQ5gzg==
+concurrently@8.2.2:
+  version "8.2.2"
+  resolved "https://registry.yarnpkg.com/concurrently/-/concurrently-8.2.2.tgz#353141985c198cfa5e4a3ef90082c336b5851784"
+  integrity sha512-1dP4gpXFhei8IOtlXRE/T/4H88ElHgTiUzh71YUmtjTEHMSRS2Z/fgOxHSxxusGHogsRfxNq1vyAwxSC+EVyDg==
   dependencies:
     chalk "^4.1.2"
+    date-fns "^2.30.0"
     lodash "^4.17.21"
     rxjs "^7.8.1"
     shell-quote "^1.8.1"
+    spawn-command "0.0.2"
     supports-color "^8.1.1"
     tree-kill "^1.2.2"
     yargs "^17.7.2"
@@ -2979,7 +2981,7 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-date-fns@^2.28.0:
+date-fns@^2.28.0, date-fns@^2.30.0:
   version "2.30.0"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.30.0.tgz#f367e644839ff57894ec6ac480de40cae4b0f4d0"
   integrity sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==
@@ -4053,10 +4055,10 @@ graceful-fs@4.2.11, graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.11.tgz#4183e4e8bf08bb6e05bbb2f7d2e0c8f712ca40e3"
   integrity sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==
 
-gscan@4.43.6:
-  version "4.43.6"
-  resolved "https://registry.yarnpkg.com/gscan/-/gscan-4.43.6.tgz#2c5749fdfbd7d250d76d67d6101ede26f974b742"
-  integrity sha512-JUpzQyV1Rl8mOYR+egFcRiHOpoTihn45ZlH3Z2D4z2tMqorG9OEnb1kf+VS+YKKpC9GY9PhJbG6tRrkthLbhEA==
+gscan@4.45.0:
+  version "4.45.0"
+  resolved "https://registry.yarnpkg.com/gscan/-/gscan-4.45.0.tgz#8f033793b80ac65b64d666aac0891287c1e74909"
+  integrity sha512-d7yu7eGJSv7Xrd8lcBr7Bq76xeKe/LYkrRsRgE8vPRlmHxLPx7AlFb585vbS1Q64cQGwQhlAGusIeKesrfOa6w==
   dependencies:
     "@sentry/node" "^7.73.0"
     "@tryghost/config" "^0.2.18"
@@ -7365,6 +7367,11 @@ sparkles@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/sparkles/-/sparkles-2.1.0.tgz#8ad4e8cecba7e568bba660c39b6db46625ecf1ad"
   integrity sha512-r7iW1bDw8R/cFifrD3JnQJX0K1jqT0kprL48BiBpLZLJPmAm34zsVBsK5lc7HirZYZqMW65dOXZgbAGt/I6frg==
+
+spawn-command@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/spawn-command/-/spawn-command-0.0.2.tgz#9544e1a43ca045f8531aac1a48cb29bdae62338e"
+  integrity sha512-zC8zGoGkmc8J9ndvml8Xksr1Amk9qBujgbF0JAIWO7kXr43w0h/0GJNM/Vustixu+YE8N/MTrQ7N31FvHUACxQ==
 
 spdx-correct@^3.0.0:
   version "3.2.0"
