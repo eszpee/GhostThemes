@@ -7,5 +7,6 @@
 /packages/journal/assets/built/* merge=theirs
 
 /routes.yaml merge=manual
+/.github/**/* merge=theirs
 /.github/workflows/journal.yml merge=manual
 /.github/dependabot.yml merge=manual
