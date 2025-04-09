@@ -109,6 +109,7 @@ A redesigned homepage template that features a simplified post list layout. This
 - Dark mode compatibility
 - Currently not active (requires Ghost configuration to activate)
 
+This template is routed to be visible under http://localhost:2368/new-design/
 
 ## Development Guidelines
 

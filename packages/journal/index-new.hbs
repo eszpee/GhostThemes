@@ -1,91 +1,144 @@
 {{!< default}}
 
+{{!-- 
+    THIS TEMPLATE IS ACCESSIBLE AT: http://localhost:2368/new-design/
+    NOT AT: http://localhost:2368/index-new/
+--}}
+
 <main id="gh-main" class="gh-main gh-outer">
     <div class="gh-inner">
         <div class="gh-content">
-            <header class="gh-page-header">
-                <h1 class="gh-page-title">All All Posts</h1>
-                <p class="gh-page-description">A simplified blog index (prototype)</p>
-            </header>
+            <article class="gh-intro">
+                <p class="gh-intro-text">
+                    Hey folks, I'm {{@site.title}}! 
+                    {{#if @site.description}}
+                        {{@site.description}}
+                    {{/if}}
+                    You might also be interested in 
+                    {{#if @site.twitter}}
+                        <a href="{{twitter_url @site.twitter}}" target="_blank" rel="noopener">my Twitter</a>,
+                    {{/if}}
+                    <a href="#/portal/signup">my newsletter</a>, or
+                    <a href="/rss/">my RSS feed</a>.
+                </p>
+            </article>
 
             <div class="gh-postlist">
-                <ul class="gh-postlist-items">
-                {{#get "posts" limit="all" include="title,url,published_at" order="published_at desc"}}
+                {{#get "posts" limit="100" include="title,url,published_at,excerpt,featured" order="published_at desc"}}
                     {{#foreach posts}}
-                        <li class="gh-postlist-item">
-                            <a href="{{url}}">{{title}}</a>
-                            <span class="gh-postlist-date">{{date published_at format="DD MMM YYYY"}}</span>
-                        </li>
+                        <p class="gh-postlist-item">
+                            <a class="gh-postlist-title" href="{{url}}">{{#if featured}}⭐ {{/if}}{{title}}</a>
+                            <time class="gh-postlist-date" datetime="{{date published_at format="YYYY-MM-DD"}}">{{date published_at format="MMMM D, YYYY"}}</time>
+                        </p>
                     {{/foreach}}
                 {{/get}}
-                </ul>
             </div>
         </div>
     </div>
 </main>
 
 <style>
-    .gh-postlist {
-        margin: 4vmin 0;
+    .gh-content {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 0 20px;
     }
     
-    .gh-postlist-items {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+    .gh-intro {
+        margin: 3.5rem 0 2.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    
+    .gh-intro-text {
+        font-size: 1.2rem;
+        line-height: 1.6;
+    }
+    
+    .gh-intro-text a {
+        text-decoration: none;
+        border-bottom: 1px solid var(--color-darkgrey);
+    }
+    
+    .gh-intro-text a:hover {
+        border-bottom-color: var(--ghost-accent-color);
+    }
+    
+    .gh-postlist {
+        margin: 2rem 0 4rem;
     }
     
     .gh-postlist-item {
-        margin: 1.5rem 0;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid rgba(0,0,0,0.1);
+        margin: 0.8rem 0;
+        padding: 0;
         display: flex;
         justify-content: space-between;
         align-items: baseline;
     }
     
-    .gh-postlist-item a {
-        font-size: 1.4rem;
-        font-weight: 600;
+    .gh-postlist-title {
+        font-size: 1.1rem;
+        font-weight: 500;
         text-decoration: none;
         color: var(--color-darkgrey);
+        margin-right: 10px;
+        flex: 1;
     }
     
-    .gh-postlist-item a:hover {
+    .gh-postlist-title:hover {
         text-decoration: underline;
     }
     
     .gh-postlist-date {
         font-size: 0.9rem;
         color: var(--color-midgrey);
+        white-space: nowrap;
+        font-feature-settings: "tnum";
     }
     
     @media (max-width: 767px) {
         .gh-postlist-item {
             flex-direction: column;
+            margin-bottom: 1.5rem;
         }
         
         .gh-postlist-date {
-            margin-top: 0.5rem;
+            margin-top: 0.3rem;
         }
     }
     
     /* Dark mode support */
-    :root[data-force-color-mode="dark"] .gh-postlist-item {
+    :root[data-force-color-mode="dark"] .gh-intro {
         border-bottom-color: rgba(255,255,255,0.1);
     }
     
-    :root[data-force-color-mode="dark"] .gh-postlist-item a {
+    :root[data-force-color-mode="dark"] .gh-intro-text a {
+        border-bottom-color: var(--color-lightgrey);
+    }
+    
+    :root[data-force-color-mode="dark"] .gh-postlist-title {
         color: var(--color-lightgrey);
     }
     
+    :root[data-force-color-mode="dark"] .gh-postlist-date {
+        color: var(--color-midgrey);
+    }
+    
     @media (prefers-color-scheme: dark) {
-        :root:not([data-force-color-mode="light"]) .gh-postlist-item {
+        :root:not([data-force-color-mode="light"]) .gh-intro {
             border-bottom-color: rgba(255,255,255,0.1);
         }
         
-        :root:not([data-force-color-mode="light"]) .gh-postlist-item a {
+        :root:not([data-force-color-mode="light"]) .gh-intro-text a {
+            border-bottom-color: var(--color-lightgrey);
+        }
+        
+        :root:not([data-force-color-mode="light"]) .gh-postlist-title {
             color: var(--color-lightgrey);
+        }
+        
+        :root:not([data-force-color-mode="light"]) .gh-postlist-date {
+            color: var(--color-midgrey);
         }
     }
 </style>
