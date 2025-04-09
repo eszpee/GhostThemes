@@ -12,6 +12,7 @@ This is a customized version of the "Journal" Ghost theme, adapted by Peter Szas
 
 - **default.hbs**: Main layout template that wraps all other templates
 - **index.hbs**: Homepage template showing latest posts and sidebar content
+- **index-new.hbs**: New homepage design prototype (not currently active)
 - **post.hbs**: Single post view template
 - **page.hbs**: Static page template
 - **author.hbs**: Author profile page template
@@ -93,6 +94,21 @@ The `package.json` file contains theme configuration:
   - Navigation layout options (Logo on the left, Logo in the middle, Stacked)
   - Title font options (Modern sans-serif, Elegant serif)
   - Body font options (Modern sans-serif, Elegant serif)
+
+## Custom Templates
+
+### Alternative Templates and Post List Templates
+
+#### New Homepage Design (index-new.hbs)
+
+A redesigned homepage template that features a simplified post list layout. This template is intended to be the new main design once approved. Features include:
+
+- Simple chronological list of all published posts
+- Clean design focused on content
+- Just titles and publication dates
+- Dark mode compatibility
+- Currently not active (requires Ghost configuration to activate)
+
 
 ## Development Guidelines
 

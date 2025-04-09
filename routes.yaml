@@ -1,6 +1,9 @@
 routes:
   /tag/:
     template: page-tags
+  /new-design/: 
+    template: index-new
+    
 
 collections:
   /:

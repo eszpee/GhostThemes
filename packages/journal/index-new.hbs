@@ -1,0 +1,91 @@
+{{!< default}}
+
+<main id="gh-main" class="gh-main gh-outer">
+    <div class="gh-inner">
+        <div class="gh-content">
+            <header class="gh-page-header">
+                <h1 class="gh-page-title">All All Posts</h1>
+                <p class="gh-page-description">A simplified blog index (prototype)</p>
+            </header>
+
+            <div class="gh-postlist">
+                <ul class="gh-postlist-items">
+                {{#get "posts" limit="all" include="title,url,published_at" order="published_at desc"}}
+                    {{#foreach posts}}
+                        <li class="gh-postlist-item">
+                            <a href="{{url}}">{{title}}</a>
+                            <span class="gh-postlist-date">{{date published_at format="DD MMM YYYY"}}</span>
+                        </li>
+                    {{/foreach}}
+                {{/get}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+
+<style>
+    .gh-postlist {
+        margin: 4vmin 0;
+    }
+    
+    .gh-postlist-items {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .gh-postlist-item {
+        margin: 1.5rem 0;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+    
+    .gh-postlist-item a {
+        font-size: 1.4rem;
+        font-weight: 600;
+        text-decoration: none;
+        color: var(--color-darkgrey);
+    }
+    
+    .gh-postlist-item a:hover {
+        text-decoration: underline;
+    }
+    
+    .gh-postlist-date {
+        font-size: 0.9rem;
+        color: var(--color-midgrey);
+    }
+    
+    @media (max-width: 767px) {
+        .gh-postlist-item {
+            flex-direction: column;
+        }
+        
+        .gh-postlist-date {
+            margin-top: 0.5rem;
+        }
+    }
+    
+    /* Dark mode support */
+    :root[data-force-color-mode="dark"] .gh-postlist-item {
+        border-bottom-color: rgba(255,255,255,0.1);
+    }
+    
+    :root[data-force-color-mode="dark"] .gh-postlist-item a {
+        color: var(--color-lightgrey);
+    }
+    
+    @media (prefers-color-scheme: dark) {
+        :root:not([data-force-color-mode="light"]) .gh-postlist-item {
+            border-bottom-color: rgba(255,255,255,0.1);
+        }
+        
+        :root:not([data-force-color-mode="light"]) .gh-postlist-item a {
+            color: var(--color-lightgrey);
+        }
+    }
+</style>
