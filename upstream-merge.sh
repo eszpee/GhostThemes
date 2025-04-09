@@ -1,12 +1,29 @@
-####THIS SCRIPT IS NOT INTENDED TO RUN AUTOMATICALLY, DO THESE STEPS MANUALLY PLEASE #!/bin/zsh
-#git checkout -b TryGhost-main main  #Tryghost-main created from main, switched to that
-#####WHEN DOING FIRST TIME
-#git checkout 959c06cc400f4e86c5c1086f25f171a80dc05b17 #go back in time, this was a common root before my changes
-#git switch -c clean-main #create new branch from the root point in time
-######WHEN DOING USUALLY (but do a git checkout clean-main before)
-git checkout clean-main
-git pull https://github.com/TryGhost/Themes.git main #pull upstream to this new branch
-git checkout main #let's go back home
-git merge --no-ff clean-main #merge the changes to ours
-#resolve any conflicts in editor, stage and commit
-git push #go home
+#!/bin/bash
+#DON'T RUN THIS DIRECTLY - IDEALLY IT SHOULD WORK BUT BETTER TO FOLLOW STEP BY STEP AND VERIFY
+# Script to update a forked repository with upstream changes
+# while respecting .gitattributes merge settings
+
+# 1. Create a backup branch with timestamp
+git checkout -b backup-main-before-sync-$(date +%Y%m%d)
+
+# 2. Return to main branch
+git checkout main
+
+# 3. Fetch the latest changes from upstream
+git fetch upstream
+
+# 4. Merge upstream changes using the "theirs" strategy
+# This will respect the merge strategies in .gitattributes
+git merge upstream/main -X theirs
+
+# 5. If there are conflicts (there shouldn't be many due to .gitattributes):
+# git status     # Check which files have conflicts
+# git mergetool  # Resolve conflicts
+# git commit -m "Resolved merge conflicts"
+
+# 6. Push changes to your fork
+git push GhostThemes main
+
+# 7. Verify the update was successful
+git log --oneline --graph --decorate -n 20
+git status
