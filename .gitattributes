@@ -1,0 +1,11 @@
+# Default merge strategy for everything: use the version from Ghost
+* merge=theirs
+
+# Directories/files where my custom changes are need manual resolution (except for some build and dependency stuff)
+/packages/journal/**/* merge=manual
+/packages/journal/package.json merge=theirs
+/packages/journal/assets/built/* merge=theirs
+
+/routes.yaml merge=manual
+/.github/workflows/journal.yml merge=manual
+/.github/dependabot.yml merge=manual
