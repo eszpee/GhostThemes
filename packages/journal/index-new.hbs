@@ -21,8 +21,9 @@
                 {{#get "posts" limit="100" include="title,url,published_at,excerpt,featured,primary_tag" filter="primary_tag:-newsletter" order="published_at desc"}}
                     {{#foreach posts}}
                         <p class="gh-postlist-item">
-                            <a class="gh-postlist-title" href="{{url}}">{{#if featured}}⭐ {{/if}}{{title}}</a>
-                            <time class="gh-postlist-date" datetime="{{date published_at format="YYYY-MM-DD"}}">{{date published_at format="MMMM D, YYYY"}}</time>
+                            {{#if featured}}<span class="gh-postlist-star">⭐</span>{{/if}}
+                            <a class="gh-postlist-title" href="{{url}}">{{title}}</a>
+                            <time class="gh-postlist-date" datetime="{{date published_at format="YYYY-MM-DD"}}">{{date published_at format="MMMM YYYY"}}</time>
                         </p>
                     {{/foreach}}
                 {{/get}}

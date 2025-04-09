@@ -759,3 +759,29 @@ a.topics-all svg {
 
 /* Topics over */
 
+/* New index page styling */
+.gh-postlist-item {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--color-light-gray);
+}
+
+.gh-postlist-star {
+    position: absolute;
+    left: -20px;
+    color: var(--ghost-accent-color);
+}
+
+.gh-postlist-title {
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+.gh-postlist-date {
+    color: var(--color-secondary-text);
+    font-size: 0.9em;
+}
+
