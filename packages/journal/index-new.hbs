@@ -24,7 +24,7 @@
             </article>
 
             <div class="gh-postlist">
-                {{#get "posts" limit="100" include="title,url,published_at,excerpt,featured" order="published_at desc"}}
+                {{#get "posts" limit="100" include="title,url,published_at,excerpt,featured,primary_tag" filter="primary_tag:-newsletter" order="published_at desc"}}
                     {{#foreach posts}}
                         <p class="gh-postlist-item">
                             <a class="gh-postlist-title" href="{{url}}">{{#if featured}}⭐ {{/if}}{{title}}</a>
