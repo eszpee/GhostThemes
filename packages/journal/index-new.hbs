@@ -20,21 +20,109 @@
                     </p>
                 </article>
 
-                <!-- Keep the post list from the new design -->
-                <div class="gh-postlist">
-                    {{#get "posts" limit="100" include="title,url,published_at,excerpt,featured,primary_tag" filter="primary_tag:-newsletter" order="published_at desc"}}
-                        {{#foreach posts}}
+                <!-- Engineering Leadership articles block -->
+                <div class="gh-content-block leadership-block">
+                    <h2 class="gh-block-title">Leadership</h2>
+                    <div class="gh-article-list">
+                        {{#get "posts" filter="primary_tag:engineering-leadership-challenges" limit="all" include="title,url,excerpt,featured,published_at" order="published_at desc"}}
+                            {{#foreach posts}}
+                                {{#if @first}}
+                                    <div class="gh-article-featured">
+                                        <p class="gh-postlist-item">
+                                            {{#if featured}}<span class="gh-postlist-star">⭐</span>{{/if}}
+                                            <a class="gh-postlist-title" href="{{url}}">{{title}}</a>
+                                        </p>
+                                        <p class="gh-article-excerpt">{{excerpt}}</p>
+                                    </div>
+                                {{else}}
+                                    <p class="gh-postlist-item">
+                                        {{#if featured}}<span class="gh-postlist-star">⭐</span>{{/if}}
+                                        <a class="gh-postlist-title" href="{{url}}">{{title}}</a>
+                                    </p>
+                                {{/if}}
+                            {{/foreach}}
+                        {{/get}}
+                    </div>
+                </div>
+
+                <!-- IC2EM articles block -->
+                <div class="gh-content-block ic2em-block">
+                    <h2 class="gh-block-title">From Engineer to Manager</h2>
+                    <div class="gh-article-list">
+                        {{#get "posts" filter="primary_tag:ic-to-em" limit="all" include="title,url,excerpt,featured,published_at" order="published_at desc"}}
+                            {{#foreach posts}}
+                                {{#if @first}}
+                                    <div class="gh-article-featured">
+                                        <p class="gh-postlist-item">
+                                            {{#if featured}}<span class="gh-postlist-star">⭐</span>{{/if}}
+                                            <a class="gh-postlist-title" href="{{url}}">{{title}}</a>
+                                        </p>
+                                        <p class="gh-article-excerpt">{{excerpt}}</p>
+                                    </div>
+                                {{else}}
+                                    <p class="gh-postlist-item">
+                                        {{#if featured}}<span class="gh-postlist-star">⭐</span>{{/if}}
+                                        <a class="gh-postlist-title" href="{{url}}">{{title}}</a>
+                                    </p>
+                                {{/if}}
+                            {{/foreach}}
+                        {{/get}}
+                    </div>
+                </div>
+
+                <!-- Substack block (hardcoded for now) -->
+                <div class="gh-content-block substack-block">
+                    <h2 class="gh-block-title">EM Challenges</h2>
+                    <div class="gh-article-list">
+                        <!-- Hardcoded list of articles from Substack -->
+                        <div class="gh-article-featured">
                             <p class="gh-postlist-item">
-                                {{#if featured}}<span class="gh-postlist-star">⭐</span>{{/if}}
-                                <a class="gh-postlist-title" href="{{url}}">{{title}}</a>
-                                <time class="gh-postlist-date" datetime="{{date published_at format="YYYY-MM-DD"}}">{{date published_at format="MMMM YYYY"}}</time>
+                                <a class="gh-postlist-title" href="https://leadtime.substack.com/p/your-team-wants-to-know-more-about-you">Your Team Wants to Know More About You</a>
                             </p>
-                        {{/foreach}}
-                    {{/get}}
+                            <p class="gh-article-excerpt">How sharing more of your personal side can build trust and stronger relationships with your team members, and ways to do this authentically without oversharing.</p>
+                        </div>
+                        <p class="gh-postlist-item">
+                            <a class="gh-postlist-title" href="https://leadtime.substack.com/p/a-simple-framework-to-develop-your-team">A Simple Framework to Develop Your Team</a>
+                        </p>
+                        <p class="gh-postlist-item">
+                            <a class="gh-postlist-title" href="https://leadtime.substack.com/p/lessons-from-leading-engineering-teams">Lessons From Leading Engineering Teams</a>
+                        </p>
+                        <p class="gh-postlist-item">
+                            <a class="gh-postlist-title" href="https://leadtime.substack.com/p/surviving-your-first-90-days-as-a">Surviving Your First 90 Days as a New Engineering Manager</a>
+                        </p>
+                        <p class="gh-postlist-item">
+                            <a class="gh-postlist-title" href="https://leadtime.substack.com/p/identifying-a-struggling-employee">Identifying a Struggling Employee</a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Other writing block -->
+                <div class="gh-content-block other-writing-block">
+                    <h2 class="gh-block-title">Other Writing</h2>
+                    <div class="gh-article-list">
+                        {{#get "posts" filter="primary_tag:-newsletter+primary_tag:-ic-to-em+primary_tag:-engineering-leadership-challenges" limit="all" include="title,url,excerpt,featured,published_at" order="published_at desc"}}
+                            {{#foreach posts}}
+                                {{#if @first}}
+                                    <div class="gh-article-featured">
+                                        <p class="gh-postlist-item">
+                                            {{#if featured}}<span class="gh-postlist-star">⭐</span>{{/if}}
+                                            <a class="gh-postlist-title" href="{{url}}">{{title}}</a>
+                                        </p>
+                                        <p class="gh-article-excerpt">{{excerpt}}</p>
+                                    </div>
+                                {{else}}
+                                    <p class="gh-postlist-item">
+                                        {{#if featured}}<span class="gh-postlist-star">⭐</span>{{/if}}
+                                        <a class="gh-postlist-title" href="{{url}}">{{title}}</a>
+                                    </p>
+                                {{/if}}
+                            {{/foreach}}
+                        {{/get}}
+                    </div>
                 </div>
             </section>
 
-            <!-- Add the sidebar from index.hbs -->
+            <!-- Sidebar with updated content -->
             <aside class="gh-sidebar">
                 <section class="gh-section">
                     <h2 class="gh-section-title">About</h2>
@@ -47,9 +135,7 @@
                         <section class="gh-about-wrapper">
                             <h3 class="gh-about-title">{{@site.title}}</h3>
 
-                            {{#if @site.description}}
-                                <p class="gh-about-description">{{@site.description}}</p>
-                            {{/if}}
+                            <p class="gh-about-description">Helping Engineers become (better) Managers</p>
                         </section>
                     </div>
 
@@ -77,46 +163,38 @@
                     {{/if}}
                 </section>
 
-                {{#get "posts" filter="featured:true" limit="all" as |featured|}}
-                    {{#if featured}}
-                        <section class="gh-section">
-                            <h3 class="gh-section-title">Featured</h3>
-
-                            <div class="gh-featured gh-feed">
-                                {{#foreach featured}}
-                                    {{> loop}}
-                                {{/foreach}}
-                            </div>
-                        </section>
-                    {{/if}}
-                {{/get}}
-
                 {{#get "posts" filter="primary_tag:newsletter" limit="10" as |newsletter|}}
                     {{#if newsletter}}
                         <section class="gh-section">
-                            <h3 class="gh-section-title">Latest Friday Updates</h3>
+                            <h3 class="gh-section-title">Blog</h3>
 
                             <div class="gh-featured gh-feed">
                                 {{#foreach newsletter}}
                                     {{#if @first}}
-                                        {{#if feature_image}}
-                                            <a href="{{url}}">
-                                                <figure class="gh-article-image">
-                                                    <img
-                                                        srcset="{{img_url feature_image size="s"}} 300w,
-                                                            {{img_url feature_image size="m"}} 720w,
-                                                            {{img_url feature_image size="l"}} 960w"
-                                                        sizes="(max-width: 1200px) 100vw, 720px"
-                                                        src="{{img_url feature_image size="m"}}"
-                                                        alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-                                                    >
-                                                </figure>
+                                        <div class="gh-blog-first-item">
+                                            <a class="gh-topic-item" href="{{url}}">
+                                                <h3 class="gh-topic-name">{{title}}</h3>
                                             </a>
-                                        {{/if}}
+                                            {{#if feature_image}}
+                                                <a href="{{url}}">
+                                                    <figure class="gh-article-image">
+                                                        <img
+                                                            srcset="{{img_url feature_image size="s"}} 300w,
+                                                                {{img_url feature_image size="m"}} 720w,
+                                                                {{img_url feature_image size="l"}} 960w"
+                                                            sizes="(max-width: 1200px) 100vw, 720px"
+                                                            src="{{img_url feature_image size="m"}}"
+                                                            alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                                                        >
+                                                    </figure>
+                                                </a>
+                                            {{/if}}
+                                        </div>
+                                    {{else}}
+                                        <a class="gh-topic-item" href="{{url}}">
+                                            <h3 class="gh-topic-name">{{title}}</h3>
+                                        </a>
                                     {{/if}}
-                                    <a class="gh-topic-item" href="{{url}}">
-                                        <h3 class="gh-topic-name">{{title}}</h3>
-                                    </a>
                                 {{/foreach}}
                                 <a class="topics-all" href="/tag/newsletter/">See all {{> "icons/arrow-right"}}</a>
                             </div>
@@ -141,17 +219,6 @@
                         </div>
                     </section>
                 {{/get}}
-
-                {{#if @site.recommendations_enabled}}
-                    <section class="gh-section">
-                        <h3 class="gh-section-title">Recommendations</h3>
-
-                        <div class="gh-recommendations">
-                            {{recommendations order="title asc"}}
-                            <button data-portal="recommendations">See all {{> "icons/arrow-right"}}</button>
-                        </div>
-                    </section>
-                {{/if}}
             </aside>
         </div>
     </div>

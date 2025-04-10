@@ -785,3 +785,84 @@ a.topics-all svg {
     font-size: 0.9em;
 }
 
+/* Content blocks for the new design */
+.gh-content-block {
+    margin-bottom: 6rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-lighter-gray);
+}
+
+.gh-content-block:last-child {
+    border-bottom: none;
+}
+
+.gh-block-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.gh-block-title::after {
+    flex-grow: 1;
+    height: 1px;
+    margin-left: 1.6rem;
+    content: "";
+    background-color: var(--color-light-gray);
+}
+
+.gh-article-list {
+    margin-bottom: 2rem;
+}
+
+.gh-article-featured {
+    margin-bottom: 2.5rem;
+}
+
+.gh-article-excerpt {
+    margin-top: 0.8rem;
+    margin-bottom: 1.5rem;
+    margin-left: 10px;
+    font-size: 1.6rem;
+    line-height: 1.4;
+    color: var(--color-secondary-text);
+}
+
+.gh-intro {
+    margin-bottom: 4rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-light-gray);
+}
+
+.gh-intro-text {
+    font-size: 1.8rem;
+    line-height: 1.5;
+}
+
+/* Add space between post list items for better readability */
+.gh-postlist-item {
+    padding-bottom: 8px;
+    margin-bottom: 18px;
+}
+
+.gh-postlist-title {
+    font-size: 1.6rem;
+    line-height: 1.4;
+}
+
+/* Blog section in sidebar */
+.gh-blog-first-item {
+    margin-bottom: 2rem;
+}
+
+.gh-blog-first-item .gh-topic-name {
+    margin-bottom: 1rem;
+}
+
+.gh-blog-first-item .gh-article-image {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
