@@ -24,20 +24,36 @@
                 <div class="gh-content-block leadership-block">
                     <h2 class="gh-block-title">Leadership</h2>
                     <div class="gh-article-list">
-                        {{#get "posts" filter="primary_tag:engineering-leadership-challenges" limit="all" include="title,url,excerpt,featured,published_at" order="published_at desc"}}
+                        {{#get "posts" filter="tag:engineering-leadership-challenges" limit="all" include="title,url,excerpt,featured,published_at,feature_image" order="published_at desc"}}
                             {{#foreach posts}}
                                 {{#if @first}}
                                     <div class="gh-article-featured">
-                                        <p class="gh-postlist-item">
-                                            {{#if featured}}<span class="gh-postlist-star">⭐</span>{{/if}}
-                                            <a class="gh-postlist-title" href="{{url}}">{{title}}</a>
-                                        </p>
-                                        <p class="gh-article-excerpt">{{excerpt}}</p>
+                                        <div class="gh-featured-article-container">
+                                            {{#if feature_image}}
+                                                <a href="{{url}}" class="gh-featured-image-link">
+                                                    <figure class="gh-featured-image">
+                                                        <img
+                                                            srcset="{{img_url feature_image size="s"}} 300w"
+                                                            src="{{img_url feature_image size="s"}}"
+                                                            alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                                                        >
+                                                    </figure>
+                                                </a>
+                                            {{/if}}
+                                            <div class="gh-featured-content">
+                                                <p class="gh-postlist-item">
+                                                    <a class="gh-postlist-title" href="{{url}}">{{title}}</a>
+                                                </p>
+                                                <p class="gh-article-excerpt">{{excerpt}}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 {{else}}
                                     <p class="gh-postlist-item">
-                                        {{#if featured}}<span class="gh-postlist-star">⭐</span>{{/if}}
-                                        <a class="gh-postlist-title" href="{{url}}">{{title}}</a>
+                                        <a class="gh-postlist-title" href="{{url}}">
+                                            {{#if featured}}<span class="gh-postlist-star">⭐</span>{{/if}}
+                                            {{title}}
+                                        </a>
                                     </p>
                                 {{/if}}
                             {{/foreach}}
@@ -49,15 +65,29 @@
                 <div class="gh-content-block ic2em-block">
                     <h2 class="gh-block-title">From Engineer to Manager</h2>
                     <div class="gh-article-list">
-                        {{#get "posts" filter="primary_tag:ic-to-em" limit="all" include="title,url,excerpt,featured,published_at" order="published_at desc"}}
+                        {{#get "posts" filter="tag:ic-to-em" limit="all" include="title,url,excerpt,featured,published_at,feature_image" order="published_at desc"}}
                             {{#foreach posts}}
                                 {{#if @first}}
                                     <div class="gh-article-featured">
-                                        <p class="gh-postlist-item">
-                                            {{#if featured}}<span class="gh-postlist-star">⭐</span>{{/if}}
-                                            <a class="gh-postlist-title" href="{{url}}">{{title}}</a>
-                                        </p>
-                                        <p class="gh-article-excerpt">{{excerpt}}</p>
+                                        <div class="gh-featured-article-container">
+                                            {{#if feature_image}}
+                                                <a href="{{url}}" class="gh-featured-image-link">
+                                                    <figure class="gh-featured-image">
+                                                        <img
+                                                            srcset="{{img_url feature_image size="s"}} 300w"
+                                                            src="{{img_url feature_image size="s"}}"
+                                                            alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                                                        >
+                                                    </figure>
+                                                </a>
+                                            {{/if}}
+                                            <div class="gh-featured-content">
+                                                <p class="gh-postlist-item">
+                                                    <a class="gh-postlist-title" href="{{url}}">{{title}}</a>
+                                                </p>
+                                                <p class="gh-article-excerpt">{{excerpt}}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 {{else}}
                                     <p class="gh-postlist-item">
@@ -76,10 +106,16 @@
                     <div class="gh-article-list">
                         <!-- Hardcoded list of articles from Substack -->
                         <div class="gh-article-featured">
-                            <p class="gh-postlist-item">
-                                <a class="gh-postlist-title" href="https://leadtime.substack.com/p/your-team-wants-to-know-more-about-you">Your Team Wants to Know More About You</a>
-                            </p>
-                            <p class="gh-article-excerpt">How sharing more of your personal side can build trust and stronger relationships with your team members, and ways to do this authentically without oversharing.</p>
+                            <div class="gh-featured-article-container">
+                                <div class="gh-featured-content">
+                                    <p class="gh-postlist-item">
+                                        <a class="gh-postlist-title" href="https://leadtime.substack.com/p/your-team-wants-to-know-more-about-you">Your Team Wants to Know More About You</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="gh-article-excerpt-container">
+                                <p class="gh-article-excerpt">How sharing more of your personal side can build trust and stronger relationships with your team members, and ways to do this authentically without oversharing.</p>
+                            </div>
                         </div>
                         <p class="gh-postlist-item">
                             <a class="gh-postlist-title" href="https://leadtime.substack.com/p/a-simple-framework-to-develop-your-team">A Simple Framework to Develop Your Team</a>
@@ -100,15 +136,29 @@
                 <div class="gh-content-block other-writing-block">
                     <h2 class="gh-block-title">Other Writing</h2>
                     <div class="gh-article-list">
-                        {{#get "posts" filter="primary_tag:-newsletter+primary_tag:-ic-to-em+primary_tag:-engineering-leadership-challenges" limit="all" include="title,url,excerpt,featured,published_at" order="published_at desc"}}
+                        {{#get "posts" filter="tag:-newsletter+tag:-ic-to-em+tag:-engineering-leadership-challenges" limit="all" include="title,url,excerpt,featured,published_at,feature_image" order="published_at desc"}}
                             {{#foreach posts}}
                                 {{#if @first}}
                                     <div class="gh-article-featured">
-                                        <p class="gh-postlist-item">
-                                            {{#if featured}}<span class="gh-postlist-star">⭐</span>{{/if}}
-                                            <a class="gh-postlist-title" href="{{url}}">{{title}}</a>
-                                        </p>
-                                        <p class="gh-article-excerpt">{{excerpt}}</p>
+                                        <div class="gh-featured-article-container">
+                                            {{#if feature_image}}
+                                                <a href="{{url}}" class="gh-featured-image-link">
+                                                    <figure class="gh-featured-image">
+                                                        <img
+                                                            srcset="{{img_url feature_image size="s"}} 300w"
+                                                            src="{{img_url feature_image size="s"}}"
+                                                            alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                                                        >
+                                                    </figure>
+                                                </a>
+                                            {{/if}}
+                                            <div class="gh-featured-content">
+                                                <p class="gh-postlist-item">
+                                                    <a class="gh-postlist-title" href="{{url}}">{{title}}</a>
+                                                </p>
+                                                <p class="gh-article-excerpt">{{excerpt}}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 {{else}}
                                     <p class="gh-postlist-item">
@@ -176,7 +226,7 @@
                                                 <h3 class="gh-topic-name">{{title}}</h3>
                                             </a>
                                             {{#if feature_image}}
-                                                <a href="{{url}}">
+                                                <a href="{{url}}" class="gh-topic-image-link">
                                                     <figure class="gh-article-image">
                                                         <img
                                                             srcset="{{img_url feature_image size="s"}} 300w,

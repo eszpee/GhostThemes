@@ -201,7 +201,7 @@
 }
 
 .gh-featured .gh-card + .gh-card {
-    margin-top: 2.8rem;
+    margin-top: 1.4rem;
 }
 
 .gh-featured .gh-card-title {
@@ -231,12 +231,12 @@
 }
 
 .gh-topic-item + .gh-topic-item {
-    margin-top: 1.6rem;
+    margin-top: 0.8rem;
 }
 
 .gh-topic-name {
-    font-size: 1.7rem;
-    font-weight: 600;
+    font-size: 1.5rem;
+    font-weight: 400;
     letter-spacing: 0;
 }
 
@@ -766,17 +766,23 @@ a.topics-all svg {
     justify-content: space-between;
     margin-bottom: 15px;
     padding-bottom: 5px;
-    border-bottom: 1px solid var(--color-light-gray);
+}
+
+/* Keep borders only for the content blocks, not for individual articles */
+.gh-content-block {
+    margin-bottom: 6rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-lighter-gray);
 }
 
 .gh-postlist-star {
     position: absolute;
-    left: -20px;
+    left: 0px;
     color: var(--ghost-accent-color);
 }
 
 .gh-postlist-title {
-    margin-left: 10px;
+    margin-left: 20px;
     font-weight: 500;
 }
 
@@ -843,13 +849,73 @@ a.topics-all svg {
 
 /* Add space between post list items for better readability */
 .gh-postlist-item {
-    padding-bottom: 8px;
-    margin-bottom: 18px;
+    padding-bottom: 4px;
+    margin-bottom: 10px;
 }
 
 .gh-postlist-title {
     font-size: 1.6rem;
     line-height: 1.4;
+}
+
+/* Featured article with image layout */
+.gh-featured-article-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 0;
+}
+
+.gh-featured-image-link {
+    display: block;
+    flex-shrink: 0;
+}
+
+.gh-featured-image {
+    margin: 0;
+    width: 120px;
+    height: auto;
+}
+
+.gh-featured-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.gh-featured-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.gh-featured-content .gh-postlist-title {
+    font-size: 1.7rem;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.gh-article-excerpt-container {
+    clear: both;
+    padding-top: 5px;
+}
+
+.gh-article-excerpt {
+    margin-top: 0;
+    font-size: 1.5rem;
+    line-height: 1.4;
+}
+
+@media (max-width: 767px) {
+    .gh-featured-article-container {
+        flex-direction: column;
+    }
+    
+    .gh-featured-image {
+        width: 100%;
+        max-width: 350px;
+        margin-bottom: 10px;
+    }
 }
 
 /* Blog section in sidebar */
@@ -859,10 +925,18 @@ a.topics-all svg {
 
 .gh-blog-first-item .gh-topic-name {
     margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.gh-featured .gh-topic-name {
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.3;
 }
 
 .gh-blog-first-item .gh-article-image {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     margin-bottom: 2rem;
 }
 
