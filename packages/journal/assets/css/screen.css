@@ -929,6 +929,28 @@ a.topics-all svg {
     font-weight: 400;
 }
 
+/* Podcast section in sidebar */
+.gh-podcast {
+    margin-bottom: 1rem;
+}
+
+.gh-podcast-intro {
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    line-height: 1.4;
+    color: var(--color-secondary-text);
+}
+
+.gh-podcast-intro a {
+    color: inherit;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.gh-podcast-intro a:hover {
+    text-decoration: underline;
+}
+
 .gh-featured .gh-topic-name {
     font-size: 1.5rem;
     font-weight: 400;

@@ -252,6 +252,37 @@
                     {{/if}}
                 {{/get}}
 
+                <!-- Podcast section -->
+                <section class="gh-section">
+                    <h3 class="gh-section-title">Podcast</h3>
+
+                    <div class="gh-podcast">
+                        <p class="gh-podcast-intro">Engineering Leadership podcast with <a href="https://www.jeremybrown.tech/" target="_blank" rel="noopener">Jeremy Brown</a></p>
+
+                        <div class="gh-topic">
+                            <a class="gh-topic-item" href="https://www.the-retrospective.com/s2-e07-taking-breaks/">
+                                <h3 class="gh-topic-name">S2:E07 - Taking Breaks</h3>
+                            </a>
+                            <a class="gh-topic-item" href="https://www.the-retrospective.com/s2-e06-handling-unplanned-work-and-interruptions-in-engineering-teams-the-firefighter-role/">
+                                <h3 class="gh-topic-name">S2:E06 - Handling Unplanned Work and Interruptions</h3>
+                            </a>
+                            <a class="gh-topic-item" href="https://www.the-retrospective.com/s2e05-understanding-and-working-with-tech-debt/">
+                                <h3 class="gh-topic-name">S2E05 - Understanding and Working With Tech Debt</h3>
+                            </a>
+                            <a class="gh-topic-item" href="https://www.the-retrospective.com/s2-e04-what-puts-the-senior-in-senior-software-engineer-2/">
+                                <h3 class="gh-topic-name">S2 E04 - What Puts the Senior in Senior Software Engineer?</h3>
+                            </a>
+                            <a class="gh-topic-item" href="https://www.the-retrospective.com/s2-e03-engineering-manager-gets-a-new-team/">
+                                <h3 class="gh-topic-name">S2 E03 - Engineering Manager Gets a New Team</h3>
+                            </a>
+                            <a class="gh-topic-item" href="https://www.the-retrospective.com/s2-e02-quiet-quitting/">
+                                <h3 class="gh-topic-name">S2 E02 - Quiet Quitting</h3>
+                            </a>
+                            <a class="topics-all" href="https://www.the-retrospective.com/">See all {{> "icons/arrow-right"}}</a>
+                        </div>
+                    </div>
+                </section>
+
                 {{#get "tags" include="count.posts" limit="20" order="count.posts desc" filter="slug:-newsletter" as |topic|}}
                     <section class="gh-section">
                         <h3 class="gh-section-title">Main Topics</h3>
