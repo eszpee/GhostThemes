@@ -848,6 +848,11 @@ a.topics-all svg {
     margin-bottom: 1.5rem;
 }
 
+.gh-intro a {
+    text-decoration: underline;
+    font-weight: 600;
+}
+
 /* Add space between post list items for better readability */
 .gh-postlist-item {
     padding-bottom: 4px;
