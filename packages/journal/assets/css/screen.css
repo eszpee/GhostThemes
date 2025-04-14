@@ -772,7 +772,6 @@ a.topics-all svg {
 .gh-content-block {
     margin-bottom: 6rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid var(--color-lighter-gray);
 }
 
 .gh-postlist-star {
@@ -795,7 +794,6 @@ a.topics-all svg {
 .gh-content-block {
     margin-bottom: 6rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid var(--color-lighter-gray);
 }
 
 .gh-content-block:last-child {
@@ -836,14 +834,13 @@ a.topics-all svg {
 }
 
 .gh-intro {
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--color-light-gray);
 }
 
-.gh-intro-text {
-    font-size: 1.8rem;
+.gh-intro p {
     line-height: 1.5;
+    margin-bottom: 1.5rem;
 }
 
 /* Add space between post list items for better readability */
@@ -923,9 +920,8 @@ a.topics-all svg {
 }
 
 .gh-blog-first-item .gh-topic-name {
-    margin-bottom: 0.5rem;
     font-size: 1.5rem;
-    font-weight: 400;
+    font-weight: 700;
 }
 
 /* Podcast section in sidebar */
@@ -952,7 +948,6 @@ a.topics-all svg {
 
 .gh-featured .gh-topic-name {
     font-size: 1.5rem;
-    font-weight: 400;
     line-height: 1.3;
 }
 
