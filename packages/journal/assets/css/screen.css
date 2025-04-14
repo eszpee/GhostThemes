@@ -825,6 +825,10 @@ a.topics-all svg {
     margin-bottom: 2.5rem;
 }
 
+.substack-block .gh-article-featured {
+    margin-left: 20px;
+}
+
 .gh-article-excerpt {
     margin-top: 0.8rem;
     margin-bottom: 1.5rem;
@@ -886,9 +890,11 @@ a.topics-all svg {
 }
 
 .gh-featured-content .gh-postlist-title {
-    font-size: 1.7rem;
+    font-size: 1.8rem;
     font-weight: 500;
     line-height: 1.3;
+    margin-left: 0px;
+    margin-bottom: -10px;
 }
 
 .gh-article-excerpt-container {
