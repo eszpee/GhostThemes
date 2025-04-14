@@ -1,0 +1,190 @@
+{{!< default}}
+
+<main id="gh-main" class="gh-main gh-outer">
+    <div class="gh-inner">
+        {{^is "paged"}}
+            {{#get "posts" limit="1" filter="tag:-newsletter"}}
+            {{#foreach posts}}
+                <article class="gh-latest gh-card {{post_class}}">
+                    <a class="gh-card-link" href="{{url}}">
+                        <header class="gh-card-header">
+                            <div class="gh-article-meta">
+                                <span class="gh-card-date">Latest — <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time></span>
+                            </div>
+                            <h2 class="gh-article-title gh-card-title">{{title}}</h2>
+                        </header>
+
+                        <p class="gh-article-excerpt">{{excerpt}}</p>
+
+                        <footer class="gh-card-meta">
+                            <span class="gh-card-duration">{{reading_time}}</span>
+                            {{#if @site.comments_enabled}}
+                                {{comment_count class="gh-card-comments"}}
+                            {{/if}}
+                            {{^has visibility="public"}}
+                                {{> icons/star}}
+                            {{/has}}
+                        </footer>
+                    </a>
+                </article>
+            {{/foreach}}
+            {{/get}}
+        {{/is}}
+
+        <div class="gh-wrapper">
+            <section class="gh-section">
+                <h2 class="gh-section-title">More posts</h2>
+
+                <div class="gh-feed">
+                    {{^is "paged"}}
+                        {{#get "posts" limit="20" filter="tag:-newsletter"}}
+                        {{#foreach posts}}
+                            {{#if @first}}
+                            {{!-- Skip this first non-newsletter post --}}
+                            {{else}}
+                                {{> "loop"}}
+                            {{/if}}
+                        {{/foreach}}
+                        {{/get}}
+                    {{else}}
+                        {{#foreach posts limit="20"}}
+                            {{#has tag="newsletter"}}
+                                {{!-- show nothing nothing --}}
+                            {{else}}
+                                {{> "loop"}}
+                            {{/has}}
+                        {{/foreach}}
+                    {{/is}}
+                </div>
+
+                {{#match posts.length "=" 1}}
+                    Additional posts will be published soon.
+                {{/match}}
+
+                <button class="gh-loadmore gh-btn">Load more posts</button>
+            </section>
+
+            <aside class="gh-sidebar">
+                <section class="gh-section">
+                    <h2 class="gh-section-title">About</h2>
+
+                    <div class="gh-about">
+                        {{#if @site.icon}}
+                            <img class="gh-about-icon" src="{{@site.icon}}" alt="{{@site.title}}">
+                        {{/if}}
+
+                        <section class="gh-about-wrapper">
+                            <h3 class="gh-about-title">{{@site.title}}</h3>
+
+                            {{#if @site.description}}
+                                <p class="gh-about-description">{{@site.description}}</p>
+                            {{/if}}
+                        </section>
+                    </div>
+
+                    {{#if @site.members_enabled}}
+                        {{^if @member.paid}}
+                            <div class="gh-signup">
+                                {{^if @member}}
+<!--                                    <p class="gh-signup-description">Sign up now to get access to the library of members-only issues.</p> -->
+                                    <p class="gh-signup-description">Sign up here to receive my newsletter.</p>
+
+                                    <a class="gh-subscribe-input" href="#/portal/signup" data-portal="signup">
+                                        <div class="gh-subscribe-input-text">
+                                            {{> icons/email}}
+                                            jamie@example.com
+                                        </div>
+                                        <div class="gh-subscribe-input-btn">Subscribe</div>
+                                    </a>
+                                {{else}}
+                                    {{#if @setting.paid_members_enabled}}
+                                        <p class="gh-signup-description">Upgrade to a paid account to get full access.</p>
+                                        <a class="gh-signup-btn gh-btn gh-primary-btn" href="#/portal/account/plans" data-portal="account/plans">Upgrade now</a>
+                                    {{/if}}
+                                {{/if}}
+                            </div>
+                        {{/if}}
+                    {{/if}}
+                </section>
+
+                {{#get "posts" filter="featured:true" limit="all" as |featured|}}
+                    {{#if featured}}
+                        <section class="gh-section">
+                            <h3 class="gh-section-title">Featured</h3>
+
+                            <div class="gh-featured gh-feed">
+                                {{#foreach featured}}
+                                    {{> loop}}
+                                {{/foreach}}
+                            </div>
+                        </section>
+                    {{/if}}
+                {{/get}}
+
+                {{#get "posts" filter="primary_tag:newsletter" limit="10" as |newsletter|}}
+                    {{#if newsletter}}
+                        <section class="gh-section">
+                            <h3 class="gh-section-title">Latest Friday Updates</h3>
+
+                            <div class="gh-featured gh-feed">
+                                {{#foreach newsletter}}
+                                    {{#if @first}}
+                                        {{#if feature_image}}
+                                            <a href="{{url}}">
+                                                <figure class="gh-article-image">
+                                                    <img
+                                                        srcset="{{img_url feature_image size="s"}} 300w,
+                                                            {{img_url feature_image size="m"}} 720w,
+                                                            {{img_url feature_image size="l"}} 960w"
+                                                        sizes="(max-width: 1200px) 100vw, 720px"
+                                                        src="{{img_url feature_image size="m"}}"
+                                                        alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                                                    >
+                                                </figure>
+                                            </a>
+                                        {{/if}}
+                                    {{/if}}
+                                    <a class="gh-topic-item" href="{{url}}">
+                                        <h3 class="gh-topic-name">{{title}}</h3>
+                                    </a>
+                                {{/foreach}}
+                                <a class="topics-all" href="/tag/newsletter/">See all {{> "icons/arrow-right"}}</a>
+
+                            </div>
+                        </section>
+                    {{/if}}
+                {{/get}}
+
+                {{#get "tags" include="count.posts" limit="20" order="count.posts desc" filter="slug:-newsletter" as |topic|}}
+                    <section class="gh-section">
+                        <h3 class="gh-section-title">Main Topics</h3>
+
+                        <div class="gh-topic">
+                            {{#foreach topic}}
+                                <a class="gh-topic-item" href="{{url}}">
+                                    <h3 class="gh-topic-name">{{name}}</h3>
+                                    <span class="gh-topic-count" style="white-space: nowrap;">
+                                        {{plural count.posts empty="0 posts" singular="% post" plural="% posts"}}
+                                    </span>
+                                </a>
+                            {{/foreach}}
+                            <a class="topics-all" href="/tag/">See all {{> "icons/arrow-right"}}</a>
+
+                        </div>
+                    </section>
+                {{/get}}
+
+                {{#if @site.recommendations_enabled}}
+                    <section class="gh-section">
+                        <h3 class="gh-section-title">Recommendations</h3>
+
+                        <div class="gh-recommendations">
+                            {{recommendations order="title asc"}}
+                            <button data-portal="recommendations">See all {{> "icons/arrow-right"}}</button>
+                        </div>
+                    </section>
+                {{/if}}
+            </aside>
+        </div>
+    </div>
+</main>
