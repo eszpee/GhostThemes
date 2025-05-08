@@ -111,60 +111,74 @@
                     </div>
                 </div>
 
-                <!-- Substack block (updated with all 12 posts) -->
+                <!-- Substack block -->
                 <div class="gh-content-block substack-block">
                     <h2 class="gh-block-title">Engineering Manager Challenges</h2>
                     <div class="gh-article-list">
-                        <!-- Latest posts from Substack -->
+                        <!-- Dynamic posts from Substack -->
+
+<script>
+
+/* RSS to JSON (Substack import) start */
+
+const feedUrl = `https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fleadtime.substack.com%2Ffeed`;
+
+const fetchLatestPosts = async () => {
+  try {
+    const response = await fetch(feedUrl);
+    const data = await response.json();
+
+    if (data.items.length > 0) {
+
+      const firstItem = data.items.shift();
+      const firstHTML = `
                         <div class="gh-article-featured">
                             <div class="gh-featured-article-container">
                                 <div class="gh-featured-content">
                                     <p class="gh-postlist-item">
-                                        <a class="gh-postlist-title" href="https://leadtime.substack.com/p/ltc14-developing-soft-skills-in-technical">Developing Soft Skills in Technical People</a>
+                                        <a class="gh-postlist-title" href="${firstItem.link}">${firstItem.title}</a>
                                     </p>
                                 </div>
                             </div>
                             <div class="gh-article-excerpt-container">
-                                <p class="gh-article-excerpt">How to work with a senior developer who resists soft skill development? What can help them see this as essential rather than optional? How to balance technical and soft skill development?</p>
+                                <p class="gh-article-excerpt">${firstItem.description}</p>
                             </div>
                         </div>
-                         <p class="gh-postlist-item">
-                            <a class="gh-postlist-title" href="https://leadtime.substack.com/p/ltc13-healing-a-divided-team">Healing a Divided Team</a>
-                        </p>
-                         <p class="gh-postlist-item">
-                            <a class="gh-postlist-title" href="https://leadtime.substack.com/p/ltc12-developer-wants-to-be-a-manager">Developer Wants To Be A Manager</a>
-                        </p>
+      `;
 
-                       <p class="gh-postlist-item">
-                            <a class="gh-postlist-title" href="https://leadtime.substack.com/p/ltc11-preparing-for-downsizing-a">Preparing for Downsizing a Team</a>
-                        </p>
+      const postsHTML = data.items.map(item => {
+        return `
                         <p class="gh-postlist-item">
-                            <a class="gh-postlist-title" href="https://leadtime.substack.com/p/ltc10-first-time-management-opportunity">First-Time Management Opportunity</a>
+                            <a class="gh-postlist-title" href="${item.link}">${item.title}</a>
                         </p>
-                        <p class="gh-postlist-item">
-                            <a class="gh-postlist-title" href="https://leadtime.substack.com/p/ltc9-move-request-to-another-team">Move Request to Another Team</a>
-                        </p>
-                        <p class="gh-postlist-item">
-                            <a class="gh-postlist-title" href="https://leadtime.substack.com/p/lead-time-crunch-8">Supporting a Low Performer</a>
-                        </p>
-                        <p class="gh-postlist-item">
-                            <a class="gh-postlist-title" href="https://leadtime.substack.com/p/lead-time-crunch-7">Someone Criticising a Developer</a>
-                        </p>
-                        <p class="gh-postlist-item">
-                            <a class="gh-postlist-title" href="https://leadtime.substack.com/p/lead-time-crunch-6">New Developer Proposing Tech Debt Work</a>
-                        </p>
-                        <p class="gh-postlist-item">
-                            <a class="gh-postlist-title" href="https://leadtime.substack.com/p/lead-time-crunch-5">Skip Level 1:1 with the VP of Engineering</a>
-                        </p>
-                        <p class="gh-postlist-item">
-                            <a class="gh-postlist-title" href="https://leadtime.substack.com/p/lead-time-crunch-4">Seasoned Developer Wants to Quit</a>
-                        </p>
-                        <p class="gh-postlist-item">
-                            <a class="gh-postlist-title" href="https://leadtime.substack.com/p/lead-time-crunch-3">Harsh Feedback on a PR</a>
-                        </p>
-                        <p class="gh-postlist-item">
-                            <a class="gh-postlist-title" href="https://leadtime.substack.com/p/lead-time-crunch-2">EM Returning from Vacation</a>
-                        </p>
+        `;
+      }).join('');
+
+      // Update HTML with the latest posts details
+      document.getElementById('latest-posts').insertAdjacentHTML('afterbegin', firstHTML + postsHTML);
+    } else {
+      document.getElementById('latest-posts').textContent = 'No posts available.';
+    }
+  } catch (error) {
+    document.getElementById('latest-posts').textContent = 'Failed to load the latest posts.';
+    console.error('Error fetching the RSS feed:', error);
+  }
+}
+
+/* RSS to JSON (Substack import) end */
+
+
+fetchLatestPosts();
+</script>
+
+
+<div id="latest-posts">
+                                <p class="gh-postlist-item">
+                                    <a class="gh-postlist-title topics-all" href="https://leadtime.substack.com/">See all {{> "icons/arrow-right"}}</a>
+                                </p>
+</div>
+
+
                     </div>
                 </div>
 
@@ -343,3 +357,4 @@
         </div>
     </div>
 </main>
+
