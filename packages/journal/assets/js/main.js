@@ -1,5 +1,8 @@
 (function () {
-    pagination(false);
+    const paginationElement = document.querySelector('.gh-pagination');
+    if (paginationElement) {
+        pagination(false);
+    }
 })();
 
 /* Dark mode START */
@@ -36,7 +39,7 @@ const setColorMode = (mode) => {
   
   // Keep an eye out for System Light/Dark Mode Changes
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-  mediaQuery.addListener(() => {
+  mediaQuery.addEventListener('change', () => {
     // Ignore change if there's an override set
     if (document.documentElement.getAttribute('data-force-color-mode')) {
       return;
