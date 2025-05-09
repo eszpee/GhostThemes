@@ -51,3 +51,51 @@ const setColorMode = (mode) => {
 
 /* Dark mode END */
 
+/* RSS to JSON (Substack import) start */
+
+const feedUrl = `https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fleadtime.substack.com%2Ffeed`;
+
+window.fetchLatestPosts = async () => {
+  try {
+    const response = await fetch(feedUrl);
+    const data = await response.json();
+
+    if (data.items.length > 0) {
+
+      const firstItem = data.items.shift();
+      const firstHTML = `
+                        <div class="gh-article-featured">
+                            <div class="gh-featured-article-container">
+                                <div class="gh-featured-content">
+                                    <p class="gh-postlist-item">
+                                        <a class="gh-postlist-title" href="${firstItem.link}">${firstItem.title}</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="gh-article-excerpt-container">
+                                <p class="gh-article-excerpt">${firstItem.description}</p>
+                            </div>
+                        </div>
+      `;
+
+      const postsHTML = data.items.map(item => {
+        return `
+                        <p class="gh-postlist-item">
+                            <a class="gh-postlist-title" href="${item.link}">${item.title}</a>
+                        </p>
+        `;
+      }).join('');
+
+      // Update HTML with the latest posts details
+      document.getElementById('latest-posts').insertAdjacentHTML('afterbegin', firstHTML + postsHTML);
+    } else {
+      document.getElementById('latest-posts').textContent = 'No posts available.';
+    }
+  } catch (error) {
+    document.getElementById('latest-posts').textContent = 'Failed to load the latest posts.';
+    console.error('Error fetching the RSS feed:', error);
+  }
+}
+
+/* RSS to JSON (Substack import) end */
+
