@@ -287,10 +287,51 @@ document.addEventListener('DOMContentLoaded', async function() {
                 <section class="gh-section">
                     <h3 class="gh-section-title">Podcast</h3>
 
-                    <div class="gh-podcast">
-                        <p class="gh-podcast-intro"><strong><a href="https://www.the-retrospective.com/">The Retrospective</a></strong> - an Engineering Leadership podcast with <a href="https://www.jeremybrown.tech/" target="_blank" rel="noopener">Jeremy Brown</a>.</p>
+                    <div class="gh-podcast" id="podcast-posts">
 
+                        <!-- Dynamic posts from The Retrospective -->
+<script>
+document.addEventListener('DOMContentLoaded', async function() {
+    try {
+        const data = await fetchLatestPosts('https://www.the-retrospective.com/rss/');
+        
+        if (data && data.items && data.items.length > 0) {
+            const firstItem = data.items.shift();
+            const firstHTML = `
                         <div class="gh-podcast-first-item">
+                            <a class="gh-topic-item" href="${firstItem.link}">
+                                <h3 class="gh-topic-name">${firstItem.title}</h3>
+                                <p class="gh-podcast-featured">${firstItem.description.replace(/<[^>]*>/g, '').split('.')[0]}.</p>
+                            </a>
+                        </div>
+            `;
+
+            const postsHTML = data.items.map(item => {
+                return `
+                            <a class="gh-topic-item" href="${item.link}">
+                                <h3 class="gh-topic-name">${item.title}</h3>
+                            </a>
+                `;
+            }).join('');
+
+            // Update HTML with the latest posts details
+            document.getElementById('podcast-posts').insertAdjacentHTML('afterbegin', 
+                '<p class="gh-podcast-intro"><strong><a href="https://www.the-retrospective.com/">The Retrospective</a></strong> - an Engineering Leadership podcast with <a href="https://www.jeremybrown.tech/" target="_blank" rel="noopener">Jeremy Brown</a>.</p>'
+                + firstHTML + 
+                '<div class="gh-topic">' 
+                + postsHTML + 
+                '</div>'
+            );
+        }
+    } catch (error) {
+        console.error('Error loading The Retrospective posts:', error);
+    }
+});
+</script>
+
+                            <a class="topics-all" href="https://www.the-retrospective.com/">See all {{> "icons/arrow-right"}}</a>
+
+<!--                         <div class="gh-podcast-first-item">
                             <a class="gh-topic-item" href="https://www.the-retrospective.com/s2-e07-taking-breaks/">
                                 <h3 class="gh-topic-name">S2:E7 - Taking Breaks</h3>
                                 <p class="gh-podcast-featured">The importance of taking breaks of various lengths to maintain energy, resilience, and mental health.</p>
@@ -313,7 +354,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                                 <h3 class="gh-topic-name">S2:E2 - Quiet Quitting</h3>
                             </a>
                             <a class="topics-all" href="https://www.the-retrospective.com/">See all {{> "icons/arrow-right"}}</a>
-                        </div>
+                        </div> -->
                     </div>
                 </section>
 
