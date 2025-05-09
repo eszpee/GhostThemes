@@ -124,8 +124,41 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    fetchLatestPosts('https://leadtime.substack.com/feed');
+document.addEventListener('DOMContentLoaded', async function() {
+    try {
+        const data = await fetchLatestPosts('https://leadtime.substack.com/feed');
+        
+        if (data && data.items && data.items.length > 0) {
+            const firstItem = data.items.shift();
+            const firstHTML = `
+                        <div class="gh-article-featured">
+                            <div class="gh-featured-article-container">
+                                <div class="gh-featured-content">
+                                    <p class="gh-postlist-item">
+                                        <a class="gh-postlist-title" href="${firstItem.link}">${firstItem.title}</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="gh-article-excerpt-container">
+                                <p class="gh-article-excerpt">${firstItem.description}</p>
+                            </div>
+                        </div>
+            `;
+
+            const postsHTML = data.items.map(item => {
+                return `
+                            <p class="gh-postlist-item">
+                                <a class="gh-postlist-title" href="${item.link}">${item.title}</a>
+                            </p>
+                `;
+            }).join('');
+
+            // Update HTML with the latest posts details
+            document.getElementById('latest-posts').insertAdjacentHTML('afterbegin', firstHTML + postsHTML);
+        }
+    } catch (error) {
+        console.error('Error loading Substack posts:', error);
+    }
 });
 </script>
 
