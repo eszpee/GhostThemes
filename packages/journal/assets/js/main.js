@@ -53,10 +53,11 @@ const setColorMode = (mode) => {
 
 /* RSS to JSON (Substack import) start */
 
-const feedUrl = `https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fleadtime.substack.com%2Ffeed`;
-
-window.fetchLatestPosts = async () => {
+window.fetchLatestPosts = async (rssUrl) => {
   try {
+    const encodedUrl = encodeURIComponent(rssUrl);
+    const feedUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodedUrl}`;
+    
     const response = await fetch(feedUrl);
     const data = await response.json();
 
