@@ -615,6 +615,18 @@
     .gh-pagehead {
         margin-bottom: 4.8rem;
     }
+
+    .gh-intro .gh-intro-image {
+        float: none;
+        display: block;
+        width: 100%;
+        margin: 0 0 2rem 0;
+    }
+    .gh-intro .gh-intro-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -636,6 +648,7 @@
         margin-top: 0;
         margin-left: 1.6rem;
     }
+    
 }
 
 @media (max-width: 991px) {
