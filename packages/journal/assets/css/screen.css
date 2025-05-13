@@ -615,28 +615,6 @@
     .gh-pagehead {
         margin-bottom: 4.8rem;
     }
-
-    .gh-featured-article-container {
-        flex-direction: column;
-    }
-    
-    .gh-featured-image {
-        width: 100%;
-        max-width: 350px;
-        margin-bottom: 10px;
-    }
-
-    .gh-intro-image {
-        float: none;
-        width: 100%;
-        margin: 0 0 2rem 0;
-    }
-
-    .gh-intro-image img {
-        width: 100%;
-        height: auto;
-        max-width: 100%;
-    }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
