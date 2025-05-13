@@ -997,6 +997,9 @@ a.topics-all svg {
     margin-bottom: 2rem;
 }
 
+.gh-blog-first-item .gh-article-image img {
+    border-radius: 4px;
+}
 .gh-main {
     padding-top: 0rem;
 }
