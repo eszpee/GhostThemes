@@ -839,8 +839,8 @@ a.topics-all svg {
 }
 
 .gh-intro {
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
 }
 
 .gh-intro-image {
@@ -995,5 +995,9 @@ a.topics-all svg {
 .gh-blog-first-item .gh-article-image {
     margin-top: 0.5rem;
     margin-bottom: 2rem;
+}
+
+.gh-main {
+    padding-top: 1.5rem;
 }
 
