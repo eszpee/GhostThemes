@@ -23,7 +23,7 @@
                 <div class="gh-content-block leadership-block">
                     <h2 class="gh-block-title">Leadership</h2>
                     <div class="gh-article-list">
-                        {{#get "posts" filter="tag:engineering-leadership-challenges" limit="all" include="title,url,excerpt,featured,published_at,feature_image" order="published_at desc"}}
+                        {{#get "posts" filter="tag:engineering-leadership" limit="all" include="title,url,excerpt,featured,published_at,feature_image" order="published_at desc"}}
                             {{#foreach posts}}
                                 {{#if @first}}
                                     <div class="gh-article-featured">
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 <div class="gh-content-block other-writing-block">
                     <h2 class="gh-block-title">Everything Else</h2>
                     <div class="gh-article-list">
-                        {{#get "posts" filter="tag:-newsletter+tag:-ic-to-em+tag:-engineering-leadership-challenges" limit="all" include="title,url,excerpt,featured,published_at,feature_image" order="published_at desc"}}
+                        {{#get "posts" filter="tag:-newsletter+tag:-ic-to-em+tag:-engineering-leadership" limit="all" include="title,url,excerpt,featured,published_at,feature_image" order="published_at desc"}}
                             {{#foreach posts}}
                                 {{#if @first}}
                                     <div class="gh-article-featured">
