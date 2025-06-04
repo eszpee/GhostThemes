@@ -12,6 +12,7 @@
       }
     </script>
 <!-- Dark mode END -->
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{meta_title}}</title>
@@ -134,6 +135,22 @@
 <script src="{{asset "built/main.min.js"}}"></script>
 
 {{ghost_foot}}
+
+<!-- Meilisearch START -->
+    <script>
+    // Meilisearch configuration
+    window.__MS_SEARCH_CONFIG__ = {
+        meilisearchHost: "https://search.peterszasz.com",
+        meilisearchApiKey: "26e9dd737386d21512c270c1afd1e4c496492451f7c859e831c37c4610dafa20",
+        indexName: "articles",
+        theme: colorModeOverride || "system", // Options: "light", "dark", "system"
+//        commonSearches: ["getting started", "tutorial", "guide"]
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@fanyangmeng/ghost-meilisearch-search-ui@1.2.3/dist/search.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@fanyangmeng/ghost-meilisearch-search-ui@1.2.3/dist/styles.css">
+<!-- Meilisearch END -->
+
 
 </body>
 

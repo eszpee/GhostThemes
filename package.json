@@ -39,5 +39,9 @@
         "extends": [
             "@tryghost:theme"
         ]
-    }
+    },
+    "dependencies": {},
+    "sodoSearch": {
+        "url": "https://cdn.jsdelivr.net/npm/@fanyangmeng/ghost-meilisearch-search-ui@1.2.3/dist/search.min.js"
+     }
 }
