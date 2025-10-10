@@ -1,5 +1,8 @@
 (function () {
-    pagination(false);
+    const paginationElement = document.querySelector('.gh-pagination');
+    if (paginationElement) {
+        pagination(false);
+    }
 })();
 
 /* Dark mode START */
@@ -36,7 +39,7 @@ const setColorMode = (mode) => {
   
   // Keep an eye out for System Light/Dark Mode Changes
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-  mediaQuery.addListener(() => {
+  mediaQuery.addEventListener('change', () => {
     // Ignore change if there's an override set
     if (document.documentElement.getAttribute('data-force-color-mode')) {
       return;
@@ -47,4 +50,21 @@ const setColorMode = (mode) => {
   });
 
 /* Dark mode END */
+
+/* RSS to JSON import start */
+
+window.fetchLatestPosts = async (rssUrl) => {
+  try {
+    const encodedUrl = encodeURIComponent(rssUrl);
+    const feedUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodedUrl}`;    
+
+    const response = await fetch(feedUrl);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching the RSS feed:', error);
+  }
+}
+
+/* RSS to JSON import end */
 

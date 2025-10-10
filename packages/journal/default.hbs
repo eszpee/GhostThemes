@@ -12,6 +12,22 @@
       }
     </script>
 <!-- Dark mode END -->
+
+<!-- Meilisearch START -->
+    <script>
+    // Meilisearch configuration
+    window.__MS_SEARCH_CONFIG__ = {
+        meilisearchHost: "https://search.peterszasz.com",
+        meilisearchApiKey: "bc9e385b2bf689fcd47f7abdf710bd58cd6e0adbbacb445d3ef0286e02f34e04",
+        indexName: "articles",
+        theme: colorModeOverride || "system", // Options: "light", "dark", "system"
+//        commonSearches: ["getting started", "tutorial", "guide"]
+    };
+    </script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@fanyangmeng/ghost-meilisearch-search-ui@1.2.3/dist/styles.css">
+<!-- Meilisearch END -->
+
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{meta_title}}</title>
