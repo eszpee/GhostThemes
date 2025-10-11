@@ -1014,3 +1014,7 @@ a.topics-all svg {
     padding-top: 0rem;
 }
 
+em {
+    font-style: italic;
+    font-weight: normal;
+}
