@@ -232,8 +232,8 @@ document.addEventListener('DOMContentLoaded', async function() {
                     {{/if}}
                 </section>
 
-                {{#get "posts" filter="primary_tag:newsletter" limit="10" as |newsletter|}}
-                    {{#if newsletter}}
+                {{#get "posts" filter="featured:true" limit="5" as |featured|}}
+                    {{#if featured}}
                         <section class="gh-section">
                             <h3 class="gh-section-title">Blog</h3>
 
@@ -271,82 +271,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     {{/if}}
                 {{/get}}
 
-                <!-- Podcast section -->
-                <section class="gh-section">
-                    <h3 class="gh-section-title">Podcast</h3>
-
-                    <div class="gh-podcast" id="podcast-posts">
-
-                        <!-- Dynamic posts from The Retrospective -->
-<script>
-document.addEventListener('DOMContentLoaded', async function() {
-    try {
-        const data = await fetchLatestPosts('https://www.the-retrospective.com/rss/');
-        
-        if (data && data.items && data.items.length > 0) {
-            const firstItem = data.items.shift();
-            const firstHTML = `
-                        <div class="gh-podcast-first-item">
-                            <a class="gh-topic-item" href="${firstItem.link}">
-                                <h3 class="gh-topic-name">${firstItem.title}</h3>
-                                <p class="gh-podcast-featured">${firstItem.description.replace(/<[^>]*>/g, '').split('.')[0]}.</p>
-                            </a>
-                        </div>
-            `;
-
-            const postsHTML = data.items.map(item => {
-                return `
-                            <a class="gh-topic-item" href="${item.link}">
-                                <h3 class="gh-topic-name">${item.title}</h3>
-                            </a>
-                `;
-            }).join('');
-
-            // Update HTML with the latest posts details
-            document.getElementById('podcast-posts').insertAdjacentHTML('afterbegin', 
-                '<p class="gh-podcast-intro"><strong><a href="https://www.the-retrospective.com/">The Retrospective</a></strong> - an Engineering Leadership podcast with <a href="https://www.jeremybrown.tech/" target="_blank" rel="noopener">Jeremy Brown</a>.</p>'
-                + firstHTML + 
-                '<div class="gh-topic">' 
-                + postsHTML + 
-                '</div>'
-            );
-        }
-    } catch (error) {
-        console.error('Error loading The Retrospective posts:', error);
-    }
-});
-</script>
-
-                            <a class="topics-all" href="https://www.the-retrospective.com/">See all {{> "icons/arrow-right"}}</a>
-
-<!--                         <div class="gh-podcast-first-item">
-                            <a class="gh-topic-item" href="https://www.the-retrospective.com/s2-e07-taking-breaks/">
-                                <h3 class="gh-topic-name">S2:E7 - Taking Breaks</h3>
-                                <p class="gh-podcast-featured">The importance of taking breaks of various lengths to maintain energy, resilience, and mental health.</p>
-                            </a>
-                        </div>
-                        <div class="gh-topic">
-                            <a class="gh-topic-item" href="https://www.the-retrospective.com/s2-e06-handling-unplanned-work-and-interruptions-in-engineering-teams-the-firefighter-role/">
-                                <h3 class="gh-topic-name">S2:E6 - Handling Unplanned Work and Interruptions</h3>
-                            </a>
-                            <a class="gh-topic-item" href="https://www.the-retrospective.com/s2e05-understanding-and-working-with-tech-debt/">
-                                <h3 class="gh-topic-name">S2:E5 - Understanding and Working With Tech Debt</h3>
-                            </a>
-                            <a class="gh-topic-item" href="https://www.the-retrospective.com/s2-e04-what-puts-the-senior-in-senior-software-engineer-2/">
-                                <h3 class="gh-topic-name">S2:E4 - What Puts the Senior in Senior Software Engineer?</h3>
-                            </a>
-                            <a class="gh-topic-item" href="https://www.the-retrospective.com/s2-e03-engineering-manager-gets-a-new-team/">
-                                <h3 class="gh-topic-name">S2:E3 - Engineering Manager Gets a New Team</h3>
-                            </a>
-                            <a class="gh-topic-item" href="https://www.the-retrospective.com/s2-e02-quiet-quitting/">
-                                <h3 class="gh-topic-name">S2:E2 - Quiet Quitting</h3>
-                            </a>
-                            <a class="topics-all" href="https://www.the-retrospective.com/">See all {{> "icons/arrow-right"}}</a>
-                        </div> -->
-                    </div>
-                </section>
-
-                {{#get "tags" include="count.posts" limit="20" order="count.posts desc" filter="slug:-newsletter" as |topic|}}
+                {{#get "tags" include="count.posts" limit="100" as |topic|}}
                     <section class="gh-section">
                         <h3 class="gh-section-title">Main Topics</h3>
 
