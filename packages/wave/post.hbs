@@ -22,6 +22,12 @@
         </div>
 
         <div class="gh-canvas">
+            <div class="gh-meta-share">
+                <a href="#/share" class="gh-button-share">{{t "Share"}} {{> "icons/share"}}</a>
+            </div>
+        </div>
+
+        <div class="gh-canvas">
             <div class="author-list">
                 <h3 class="author-list-title">
                     {{#if og_description}}Hosted by:{{else}}Written by:{{/if}}
@@ -33,8 +39,8 @@
             {{#if comments}}
                 <section class="gh-comments">
                     <header class="gh-comments-header">
-                        <h3 class="gh-comments-title author-list-title">Member discussion:</h3>
-                        {{comment_count class="gh-comments-count"}}
+                        <h3 class="gh-comments-title author-list-title">{{t "Member discussion:"}}</h3>
+                        {{comment_count class="gh-comments-count" singular=(t "comment") plural=(t "comments")}}
                     </header>
                     {{comments title="" count=false}}
                 </section>

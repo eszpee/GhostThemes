@@ -22,20 +22,25 @@
                     <span class="post-meta-item post-meta-date">
                         <time datetime="{{date format="YYYY-MM-DD"}}">{{date published_at format="DD MMM YYYY"}}</time>
                     </span>
-                    <span class="post-meta-item post-meta-length">{{reading_time}}</span>
+                    <span class="post-meta-item post-meta-length">{{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>
                     {{#if featured}}
                         <span class="post-meta-featured">
                             {{> "icons/star"}}
                         </span>
                     {{/if}}
                     {{#if @site.comments_enabled}}
-                        {{comment_count class="post-meta-item"}}
+                        {{comment_count class="post-meta-item" singular=(t "comment") plural=(t "comments")}}
                     {{/if}}
                 </div>
             </header>
         {{/if}}
         <div class="post-content gh-content gh-canvas">
             {{content}}
+        </div>
+        <div class="gh-canvas">
+            <div class="gh-meta-share">
+                <a href="#/share" class="gh-button-share">{{t "Share"}} {{> "icons/share"}}</a>
+            </div>
         </div>
     </article>
 

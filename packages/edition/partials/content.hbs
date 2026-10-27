@@ -10,7 +10,7 @@
                     </time>
                 </span>
                 <span class="single-meta-item single-meta-length">
-                    {{reading_time}}
+                    {{reading_time minute=(t "1 min read") minutes=(t "% min read")}}
                 </span>
                 {{#primary_tag}}
                     <span class="single-meta-item single-meta-tag">
@@ -28,12 +28,16 @@
                 </div>
             {{/if}}
 
+            <div class="gh-meta-share">
+                <a href="#/share" class="gh-button-share">{{t "Share"}} {{> "icons/share"}}</a>
+            </div>
+
             <div class="author-name" style="display: none;">{{authors}}</div>
 
             {{#if feature_image}}
             {{#unless no_image}}
                 <figure class="single-media kg-width-{{width}}">
-                    <img srcset="{{> "srcset"}}" sizes="(min-width: 1023px) 920px, calc(90vw)" src="{{img_url feature_image size="l"}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}">
+                    <img class="gh-feature-image" srcset="{{> "srcset"}}" sizes="(min-width: 1023px) 920px, calc(90vw)" src="{{img_url feature_image size="l"}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}">
                     {{#if feature_image_caption}}
                         <figcaption>{{feature_image_caption}}</figcaption>
                     {{/if}}
