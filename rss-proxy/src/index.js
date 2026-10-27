@@ -36,18 +36,30 @@ function escapeHtml(text) {
         .replace(/'/g, '&#39;');
 }
 
-const TAGS = {
-    title: /<title(?:\s[^>]*)?>([\s\S]*?)<\/title>/i,
-    link: /<link(?:\s[^>]*)?>([\s\S]*?)<\/link>/i,
-    description: /<description(?:\s[^>]*)?>([\s\S]*?)<\/description>/i,
-    pubDate: /<pubDate(?:\s[^>]*)?>([\s\S]*?)<\/pubDate>/i,
-};
+// Returns the raw inner text of the first <name> element (plain string scanning, no regex).
+function innerXml(xml, name) {
+    let from = 0;
+    while (true) {
+        const open = xml.indexOf(`<${name}`, from);
+        if (open === -1) return null;
+        const next = xml.charAt(open + name.length + 1);
+        if (next === '>' || next === ' ' || next === '\t' || next === '\n' || next === '\r') {
+            const start = xml.indexOf('>', open) + 1;
+            const end = xml.indexOf(`</${name}>`, start);
+            return end === -1 ? null : xml.slice(start, end);
+        }
+        from = open + 1;
+    }
+}
 
 function tag(xml, name) {
-    const match = xml.match(TAGS[name]);
-    if (!match) return '';
-    const cdata = match[1].match(/^\s*<!\[CDATA\[([\s\S]*?)\]\]>\s*$/);
-    return cdata ? cdata[1] : decodeEntities(match[1]);
+    const inner = innerXml(xml, name);
+    if (inner === null) return '';
+    const trimmed = inner.trim();
+    if (trimmed.startsWith('<![CDATA[') && trimmed.endsWith(']]>')) {
+        return trimmed.slice('<![CDATA['.length, -']]>'.length);
+    }
+    return decodeEntities(inner);
 }
 
 function toText(html) {
