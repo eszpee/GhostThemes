@@ -75,7 +75,7 @@
         "@tryghost/shared-theme-assets": "2.7.5",
         "@tryghost/theme-translations": "^0.0.9",
         "autoprefixer": "10.6.1",
-        "beeper": "2.1.0",
+        "beeper": "3.0.0",
         "cssnano": "9.9.0",
         "gscan": "6.6.1",
         "gulp": "5.0.1",

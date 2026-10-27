@@ -16,7 +16,7 @@
     "packageManager": "pnpm@12.15.0",
     "devDependencies": {
         "autoprefixer": "10.6.1",
-        "beeper": "2.1.0",
+        "beeper": "3.0.0",
         "cssnano": "9.9.0",
         "glob": "13.0.6",
         "gscan": "6.6.1",
