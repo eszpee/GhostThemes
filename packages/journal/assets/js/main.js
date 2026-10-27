@@ -53,10 +53,13 @@ const setColorMode = (mode) => {
 
 /* RSS to JSON import start */
 
+// Our own Cloudflare Worker that serves the homepage feeds as JSON (rss-proxy/ in this repo).
+const RSS_PROXY_URL = 'https://peterszasz-rss-proxy.eszpee.workers.dev/';
+
 window.fetchLatestPosts = async (rssUrl) => {
   try {
     const encodedUrl = encodeURIComponent(rssUrl);
-    const feedUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodedUrl}`;    
+    const feedUrl = `${RSS_PROXY_URL}?rss_url=${encodedUrl}`;
 
     const response = await fetch(feedUrl);
     const data = await response.json();
