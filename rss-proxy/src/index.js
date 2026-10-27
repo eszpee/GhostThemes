@@ -38,18 +38,15 @@ function escapeHtml(text) {
 
 // Returns the raw inner text of the first <name> element (plain string scanning, no regex).
 function innerXml(xml, name) {
-    let from = 0;
-    while (true) {
-        const open = xml.indexOf(`<${name}`, from);
-        if (open === -1) return null;
+    for (let open = xml.indexOf(`<${name}`); open !== -1; open = xml.indexOf(`<${name}`, open + 1)) {
         const next = xml.charAt(open + name.length + 1);
         if (next === '>' || next === ' ' || next === '\t' || next === '\n' || next === '\r') {
             const start = xml.indexOf('>', open) + 1;
             const end = xml.indexOf(`</${name}>`, start);
             return end === -1 ? null : xml.slice(start, end);
         }
-        from = open + 1;
     }
+    return null;
 }
 
 function tag(xml, name) {
