@@ -1,29 +1,65 @@
 #!/bin/bash
-#DON'T RUN THIS DIRECTLY - IDEALLY IT SHOULD WORK BUT BETTER TO FOLLOW STEP BY STEP AND VERIFY
-# Script to update a forked repository with upstream changes
-# while respecting .gitattributes merge settings
+# Start a sync of this fork with upstream TryGhost/Themes, in a separate worktree.
+#
+# Takes upstream for everything that isn't ours, removes workflows we don't run, and stops
+# with only the files that need a human decision (Journal templates, the Journal workflow,
+# routes.yaml, README.md). It never commits, pushes or touches main.
+#
+# Usage, from the repo root on a clean main: ./upstream-merge.sh
+set -euo pipefail
 
-# 1. Create a backup branch with timestamp
-git checkout -b backup-main-before-sync-$(date +%Y%m%d)
+BRANCH="sync-upstream-$(date +%Y-%m-%d)"
+WORKTREE="../ghost-themes-sync"
 
-# 2. Return to main branch
-git checkout main
+if [ -n "$(git status --porcelain)" ] || [ "$(git branch --show-current)" != "main" ]; then
+    echo "Run this from a clean main checkout." >&2
+    exit 1
+fi
 
-# 3. Fetch the latest changes from upstream
+git pull --ff-only
 git fetch upstream
+git worktree add -b "$BRANCH" "$WORKTREE" main
+cd "$WORKTREE"
 
-# 4. Merge upstream changes using the "theirs" strategy
-# This will respect the merge strategies in .gitattributes
-git merge upstream/main -X theirs
+# Conflicts are expected here; they are handled below.
+git merge --no-ff --no-commit upstream/main || true
 
-# 5. If there are conflicts (there shouldn't be many due to .gitattributes):
-# git status     # Check which files have conflicts
-# git mergetool  # Resolve conflicts
-# git commit -m "Resolved merge conflicts"
+# We only run the Journal workflow.
+for wf in .github/workflows/*.yml; do
+    [ "$wf" = ".github/workflows/journal.yml" ] && continue
+    git rm -q -f --ignore-unmatch "$wf"
+done
 
-# 6. Push changes to your fork
-git push GhostThemes main
+needs_human() {
+    case "$1" in
+        packages/journal/assets/built/*) return 1 ;;
+        packages/journal/*|.github/workflows/journal.yml|routes.yaml|README.md|upstream-merge.sh) return 0 ;;
+        *) return 1 ;;
+    esac
+}
 
-# 7. Verify the update was successful
-git log --oneline --graph --decorate -n 20
-git status
+conflicts=$(git diff --name-only --diff-filter=U)
+for path in $conflicts; do
+    needs_human "$path" && continue
+    if git cat-file -e ":3:$path" 2>/dev/null; then
+        git checkout --theirs -- "$path"
+        git add -- "$path"
+    else
+        git rm -q -- "$path"
+    fi
+done
+
+echo
+echo "Worktree: $WORKTREE (branch $BRANCH)"
+echo "Resolve these by hand (keep our side of Journal customizations):"
+git diff --name-only --diff-filter=U | sed 's/^/  /'
+cat <<'EOF'
+
+Then, in the worktree:
+  - packages/journal/package.json: upstream deps, our name/description/version/posts_per_page
+  - .github/workflows/journal.yml: upstream's version with the subtree job commented out
+  - npx -y pnpm@12.15.0 install --frozen-lockfile
+  - npx -y pnpm@12.15.0 zip --theme journal
+  - npx -y pnpm@12.15.0 test:ci --theme journal
+  - compare old vs new theme on the local Ghost in ../ghost, then commit, push and open a PR
+EOF
