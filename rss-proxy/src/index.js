@@ -1,6 +1,5 @@
 // RSS -> JSON proxy for the peterszasz.com homepage blocks.
-// Replaces api.rss2json.com (now behind a Cloudflare bot challenge) with the same
-// response shape: {status, items: [{title, link, description, pubDate}]}.
+// Response shape: {status, items: [{title, link, description, pubDate}]}.
 
 const FEEDS = [
     'https://leadtime.tech/feed',
@@ -37,8 +36,15 @@ function escapeHtml(text) {
         .replace(/'/g, '&#39;');
 }
 
+const TAGS = {
+    title: /<title(?:\s[^>]*)?>([\s\S]*?)<\/title>/i,
+    link: /<link(?:\s[^>]*)?>([\s\S]*?)<\/link>/i,
+    description: /<description(?:\s[^>]*)?>([\s\S]*?)<\/description>/i,
+    pubDate: /<pubDate(?:\s[^>]*)?>([\s\S]*?)<\/pubDate>/i,
+};
+
 function tag(xml, name) {
-    const match = xml.match(new RegExp(`<${name}(?:\\s[^>]*)?>([\\s\\S]*?)</${name}>`, 'i'));
+    const match = xml.match(TAGS[name]);
     if (!match) return '';
     const cdata = match[1].match(/^\s*<!\[CDATA\[([\s\S]*?)\]\]>\s*$/);
     return cdata ? cdata[1] : decodeEntities(match[1]);
@@ -68,7 +74,13 @@ export function parseRss(xml) {
 }
 
 function isAllowedOrigin(origin) {
-    return ALLOWED_ORIGINS.includes(origin) || /^http:\/\/localhost(:\d+)?$/.test(origin);
+    if (ALLOWED_ORIGINS.includes(origin)) return true;
+    try {
+        const url = new URL(origin);
+        return url.protocol === 'http:' && url.hostname === 'localhost' && url.origin === origin;
+    } catch {
+        return false;
+    }
 }
 
 function json(body, status, origin) {
@@ -98,8 +110,10 @@ export default {
             return json({status: 'error', message: 'Method not allowed'}, 405, origin);
         }
 
-        const feedUrl = new URL(request.url).searchParams.get('rss_url');
-        if (!FEEDS.includes(feedUrl)) {
+        // Only ever fetch our own constants, never the requested string itself.
+        const requested = new URL(request.url).searchParams.get('rss_url');
+        const feedUrl = FEEDS.find(feed => feed === requested);
+        if (!feedUrl) {
             return json({status: 'error', message: 'Unknown feed'}, 400, origin);
         }
 

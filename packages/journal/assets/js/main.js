@@ -53,7 +53,7 @@ const setColorMode = (mode) => {
 
 /* RSS to JSON import start */
 
-// Our own Cloudflare Worker (rss-proxy/ in this repo); api.rss2json.com is behind a bot challenge.
+// Our own Cloudflare Worker that serves the homepage feeds as JSON (rss-proxy/ in this repo).
 const RSS_PROXY_URL = 'https://peterszasz-rss-proxy.eszpee.workers.dev/';
 
 window.fetchLatestPosts = async (rssUrl) => {
