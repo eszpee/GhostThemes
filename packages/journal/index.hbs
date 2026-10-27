@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             <!-- Sidebar with updated content -->
             <aside class="gh-sidebar">
                 <section class="gh-section">
-                    <h2 class="gh-section-title">About</h2>
+                    <h2 class="gh-section-title">{{t "About"}}</h2>
 
                     <div class="gh-about">
                         {{#if @site.icon}}
@@ -217,14 +217,14 @@ document.addEventListener('DOMContentLoaded', async function() {
                                     <a class="gh-subscribe-input" href="#/portal/signup" data-portal="signup">
                                         <div class="gh-subscribe-input-text">
                                             {{> icons/email}}
-                                            jamie@example.com
+                                            {{t "jamie@example.com"}}
                                         </div>
-                                        <div class="gh-subscribe-input-btn">Subscribe</div>
+                                        <div class="gh-subscribe-input-btn">{{t "Subscribe"}}</div>
                                     </a>
                                 {{else}}
                                     {{#if @setting.paid_members_enabled}}
-                                        <p class="gh-signup-description">Upgrade to a paid account to get full access.</p>
-                                        <a class="gh-signup-btn gh-btn gh-primary-btn" href="#/portal/account/plans" data-portal="account/plans">Upgrade now</a>
+                                        <p class="gh-signup-description">{{t "Upgrade to a paid account to get full access."}}</p>
+                                        <a class="gh-signup-btn gh-btn gh-primary-btn" href="#/portal/account/plans" data-portal="account/plans">{{t "Upgrade now"}}</a>
                                     {{/if}}
                                 {{/if}}
                             </div>

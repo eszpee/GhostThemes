@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{^is "blog"}}
-        <title>{{meta_title}}</title>
+        <title>{{meta_title page=(t " (Page %)")}}</title>
     {{else}}
         <title>{{block "title"}}</title>
         {{{block "description"}}}
@@ -30,15 +30,15 @@
                         {{/if}}
                     </a>
                 </div>
-                <button class="gh-search gh-icon-btn" aria-label="Search this site" data-ghost-search>{{> "icons/search"}}</button>
-                <button class="gh-burger" aria-label="Toggle menu"></button>
+                <button class="gh-search gh-icon-btn" aria-label="{{t "Search this site"}}" data-ghost-search>{{> "icons/search"}}</button>
+                <button class="gh-burger" aria-label="{{t "Toggle menu"}}"></button>
             </div>
 
             <nav class="gh-head-menu">
                 {{navigation}}
                 {{#unless @site.members_enabled}}
                     {{#match @custom.navigation_layout "Stacked"}}
-                        <button class="gh-search gh-icon-btn" aria-label="Search this site" data-ghost-search>{{> "icons/search"}}</button>
+                        <button class="gh-search gh-icon-btn" aria-label="{{t "Search this site"}}" data-ghost-search>{{> "icons/search"}}</button>
                     {{/match}}
                 {{/unless}}
             </nav>
@@ -46,20 +46,20 @@
             <div class="gh-head-actions">
                 {{#unless @site.members_enabled}}
                     {{^match @custom.navigation_layout "Stacked"}}
-                        <button class="gh-search gh-icon-btn" aria-label="Search this site" data-ghost-search>{{> "icons/search"}}</button>
+                        <button class="gh-search gh-icon-btn" aria-label="{{t "Search this site"}}" data-ghost-search>{{> "icons/search"}}</button>
                     {{/match}}
                 {{else}}
-                    <button class="gh-search gh-icon-btn" aria-label="Search this site" data-ghost-search>{{> "icons/search"}}</button>
+                    <button class="gh-search gh-icon-btn" aria-label="{{t "Search this site"}}" data-ghost-search>{{> "icons/search"}}</button>
                     <div class="gh-head-members">
                         {{#unless @member}}
                             {{#unless @site.members_invite_only}}
-                                <a class="gh-head-link" href="#/portal/signin" data-portal="signin">Sign in</a>
-                                <a class="gh-head-btn gh-btn gh-primary-btn" href="#/portal/signup" data-portal="signup">Subscribe</a>
+                                <a class="gh-head-link" href="#/portal/signin" data-portal="signin">{{t "Sign in"}}</a>
+                                <a class="gh-head-btn gh-btn gh-primary-btn" href="#/portal/signup" data-portal="signup">{{t "Subscribe"}}</a>
                             {{else}}
-                                <a class="gh-head-btn gh-btn gh-primary-btn" href="#/portal/signin" data-portal="signin">Sign in</a>
+                                <a class="gh-head-btn gh-btn gh-primary-btn" href="#/portal/signin" data-portal="signin">{{t "Sign in"}}</a>
                             {{/unless}}
                         {{else}}
-                            <a class="gh-head-btn gh-btn gh-primary-btn" href="#/portal/account" data-portal="account">Account</a>
+                            <a class="gh-head-btn gh-btn gh-primary-btn" href="#/portal/account" data-portal="account">{{t "Account"}}</a>
                         {{/unless}}
                     </div>
                 {{/unless}}
@@ -96,16 +96,16 @@
                         <span class="subscribe-text">Apple</span>
                     </a>
                 {{/if}}
-                {{#if @custom.google_podcasts_link}}
-                    <a href="{{@custom.google_podcasts_link}}" class="subscribe-link" target="_blank" rel="noopener noreferrer">
-                        {{> "icons/google"}}
-                        <span class="subscribe-text">Google</span>
-                    </a>
-                {{/if}}
                 {{#if @custom.spotify_link}}
                     <a href="{{@custom.spotify_link}}" class="subscribe-link" target="_blank" rel="noopener noreferrer">
                         {{> "icons/spotify"}}
                         <span class="subscribe-text">Spotify</span>
+                    </a>
+                {{/if}}
+                {{#if @custom.youtube_music_link}}
+                    <a href="{{@custom.youtube_music_link}}" class="subscribe-link" target="_blank" rel="noopener noreferrer">
+                        {{> "icons/youtube-music"}}
+                        <span class="subscribe-text">YouTube Music</span>
                     </a>
                 {{/if}}
                 <a href="{{#if @custom.rss_link}}{{@custom.rss_link}}{{else}}{{@site.url}}/rss{{/if}}" class="subscribe-link rss" target="_blank" rel="noopener noreferrer">
@@ -116,8 +116,18 @@
             <nav class="gh-foot-menu">
                 {{navigation type="secondary"}}
             </nav>
+            <div class="gh-social-links">
+                {{#social_accounts @site}}
+                    <a href="{{href}}" target="_blank" rel="noopener" aria-label="{{name}}">
+                        {{#> (concat "icons/" type)}}
+                            {{!-- Fallback when no per-platform icon partial exists --}}
+                            <span>{{name}}</span>
+                        {{/undefined}}
+                    </a>
+                {{/social_accounts}}
+            </div>
             <div class="gh-copyright">
-                {{@site.title}} © {{date format="YYYY"}}. Powered by <a href="https://ghost.org/" target="_blank" rel="noopener">Ghost</a>
+                {{@site.title}} © {{date format="YYYY"}}. {{{t "Powered by {ghostlink}" ghostlink="<a href=\"https://ghost.org/\" target=\"_blank\" rel=\"noopener\">Ghost</a>"}}}
             </div>
         </div>
     </footer>
