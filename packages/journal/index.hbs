@@ -7,7 +7,12 @@
                 <!-- Keep the intro from the new design -->
                 <article class="gh-intro">
                     <figure class="gh-intro-image">
-                        <img src="{{asset "peter-szasz.jpg"}}" alt="Péter Szász" />
+                        <img src="{{asset "peter-szasz-800.webp"}}"
+                             srcset="{{asset "peter-szasz-600.webp"}} 600w, {{asset "peter-szasz-800.webp"}} 800w"
+                             sizes="(max-width: 767px) 100vw, 300px"
+                             width="800" height="885"
+                             fetchpriority="high"
+                             alt="Péter Szász" />
                     </figure>
                     <p>
                         <b>Hi, I'm Péter</b><br/><i>(Or as some might know me, eszpee.)</i> 
