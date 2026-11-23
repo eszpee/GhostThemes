@@ -31,6 +31,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{meta_title page=(t " (Page %)")}}</title>
+    {{!-- Preload the Inter weights every page uses, so they load alongside screen.css
+          instead of after it (less font-swap layout shift). The hrefs must match the
+          @font-face url()s exactly (no {{asset}} ?v= hash) or each font downloads twice. --}}
+    <link rel="preload" href="/assets/fonts/inter-v12-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/inter-v12-latin-500.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/inter-v12-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/inter-v12-latin-700.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="{{asset "built/screen.css"}}">
 
     {{ghost_head}}
